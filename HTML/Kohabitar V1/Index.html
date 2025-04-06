@@ -42,20 +42,36 @@
                     data-bs-parent="#menuAccordion">
                     <a href="#" onclick="cargarVista('PARQUEADEROS/AsignarParqueadero.html')">Asignar Parqueadero</a>
                     <a href="#" onclick="cargarVista('PARQUEADEROS/RegistroParqueadero.html')">Registro de Parqueaderos</a>
+                    <a href="#" onclick="cargarVista('PARQUEADEROS/ReservaParqueadero.html')">Reserva de Parqueaderos</a>
                 </div>
             </div>
 
-            <!-- Residentes -->
+            <!-- Seguridad -->
             <div class="accordion-item bg-transparent border-0">
                 <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#residentesCollapse" role="button" aria-expanded="false">
-                    <span><i class="fas fa-user"></i> Residentes</span>
+                    href="#seguridadCollapse" role="button" aria-expanded="false">
+                    <span><i class="fas fa-shield-alt"></i> Registros</span>
                     <i class="fas fa-chevron-right rotate-icon"></i>
                 </a>
-                <div id="residentesCollapse" class="accordion-collapse collapse submenu ps-3"
+                <div id="seguridadCollapse" class="accordion-collapse collapse submenu ps-3"
                     data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('registro_residentes.html')">Registro de Residentes</a>
-                    <a href="#" onclick="cargarVista('lista_residentes.html')">Lista de Residentes</a>
+                    <a href="#" onclick="cargarVista('VISITANTES/RegistroVisitante.html')">Registro de Visitantes</a>
+                    <a href="#" onclick="cargarVista('VISITANTES/RegistroVehiculoVisitante.html')">Registro de Visitantes</a>
+                </div>
+            </div>
+            
+            <!-- Zonas Comunes -->
+
+            <div class="accordion-item bg-transparent border-0">
+                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                    href="#zonasComunesCollapse" role="button" aria-expanded="false">
+                    <span><i class="fas fa-shield-alt"></i> Zonas Comunes</span>
+                    <i class="fas fa-chevron-right rotate-icon"></i>
+                </a>
+                <div id="zonasComunesCollapse" class="accordion-collapse collapse submenu ps-3"
+                    data-bs-parent="#menuAccordion">
+                    <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes.html')">Registro de Visitantes</a>
+                    <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes2.html')">Registro de Visitantes</a>
                 </div>
             </div>
 

@@ -6,9 +6,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="p-4 bg-light">
+<body class="p-4 d-flex flex-column min-vh-100">
 
-  <div class="container">
+  <div class="container flex-grow-1 py-4">
     <h2 class="mb-4">Gestión de Usuarios</h2>
 
     <!-- Botón: Crear usuario -->
@@ -44,6 +44,14 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Footer siempre al final -->
+  <footer class="text-black text-center py-3 bg-white mt-auto shadow-sm">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Sistema de Gestión de Propiedad Horizontal. Todos los derechos reservados.</p>
+      <small>Desarrollado por [Tu Nombre o Empresa]</small>
+    </div>
+  </footer>  
 
   <!-- Modal: Crear Usuario -->
   <div class="modal fade" id="crearUsuarioModal" tabindex="-1" aria-labelledby="crearUsuarioLabel" aria-hidden="true">

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Vehículos de Visitantes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-light p-4">
+
+  <div class="container">
+    <h2 class="mb-4 text-success"><i class="fas fa-car me-2"></i>Gestión de Vehículos de Visitantes</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover shadow-sm bg-white align-middle">
+        <thead class="table-success">
+          <tr>
+            <th>ID</th>
+            <th>Rol</th>
+            <th>Nombre HU</th>
+            <th>Objetivo</th>
+            <th>Prioridad</th>
+            <th>Criterio de Aceptación</th>
+            <th>Escenario</th>
+            <th>Acción</th>
+            <th>Resultado Esperado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HU-031</td>
+            <td>Administrador</td>
+            <td>Registrar vehículo de visitante</td>
+            <td>Permitir que un vehículo de visitante sea registrado en el sistema.</td>
+            <td>1</td>
+            <td>Registro exitoso de vehículo de visitante</td>
+            <td>Un visitante llega a la propiedad con su vehículo.</td>
+            <td>El administrador registra los detalles del vehículo (placa, modelo, propietario, etc.), así como la dirección de la unidad a la que se dirige.</td>
+            <td>El sistema registra correctamente los datos del vehículo y asigna un espacio.</td>
+          </tr>
+          <tr>
+            <td>HU-032</td>
+            <td>Administrador</td>
+            <td>Verificar disponibilidad de espacio para vehículos de visitantes</td>
+            <td>Asegurarse de que haya espacio disponible para los visitantes.</td>
+            <td>1</td>
+            <td>Verificación exitosa de espacio disponible para vehículos visitantes</td>
+            <td>Un visitante solicita acceso al parqueadero.</td>
+            <td>El sistema verifica si hay espacios libres disponibles para asignar a un vehículo visitante.</td>
+            <td>El sistema informa si hay o no espacio disponible para el visitante.</td>
+          </tr>
+          <tr>
+            <td>HU-033</td>
+            <td>Administrador</td>
+            <td>Establecer duración de estancia del vehículo de visitante</td>
+            <td>Definir cuánto tiempo un visitante puede usar el parqueadero.</td>
+            <td>1</td>
+            <td>Duración de estancia registrada correctamente</td>
+            <td>El vehículo de un visitante ha sido registrado.</td>
+            <td>El administrador ingresa la duración estimada de la estancia del vehículo del visitante.</td>
+            <td>El sistema calcula la duración y la almacena.</td>
+          </tr>
+          <tr>
+            <td>HU-034</td>
+            <td>Administrador</td>
+            <td>Eliminar o actualizar registro vehículo de visitante</td>
+            <td>Actualizar la información o eliminar el registro de un vehículo de visitante.</td>
+            <td>1</td>
+            <td>Eliminación/actualización exitosa de vehículo de visitante</td>
+            <td>El visitante se va o cambia de vehículo.</td>
+            <td>El administrador actualiza o elimina el registro del vehículo de visitante.</td>
+            <td>El registro del vehículo es eliminado o actualizado en el sistema correctamente.</td>
+          </tr>
+          <tr>
+            <td>HU-035</td>
+            <td>Administrador</td>
+            <td>Notificar al propietario sobre la llegada de un visitante con vehículo</td>
+            <td>Mantener informado al propietario sobre la presencia de un visitante en su unidad.</td>
+            <td>1</td>
+            <td>Notificación exitosa enviada al propietario sobre un visitante</td>
+            <td>Un visitante llega con su vehículo.</td>
+            <td>El sistema envía una notificación al propietario de la unidad donde se estacionará el vehículo del visitante.</td>
+            <td>El propietario recibe la notificación de que su visitante está estacionado.</td>
+          </tr>
+          <tr>
+            <td>HU-036</td>
+            <td>Administrador</td>
+            <td>Verificar el tiempo de permanencia</td>
+            <td>Permite verificar cuánto tiempo ha permanecido un vehículo en el parqueadero.</td>
+            <td>1</td>
+            <td>Tiempo de permanencia verificado correctamente</td>
+            <td>El administrador necesita saber cuánto tiempo ha estado un vehículo en el parqueadero.</td>
+            <td>El administrador o el sistema calcula el tiempo de permanencia del vehículo.</td>
+            <td>El sistema muestra el tiempo total de ocupación del vehículo.</td>
+          </tr>
+          <tr>
+            <td>HU-037</td>
+            <td>Administrador</td>
+            <td>Cobrar tarifas y descuentos automáticos</td>
+            <td>Permitir aplicar tarifas y descuentos según condiciones específicas.</td>
+            <td>1</td>
+            <td>Tarifa aplicada correctamente</td>
+            <td>El administrador gestiona el cobro de tarifas por uso de parqueadero.</td>
+            <td>El sistema calcula y aplica automáticamente tarifas según tiempo de permanencia y condiciones del vehículo.</td>
+            <td>El sistema muestra la tarifa y el descuento aplicado.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
