@@ -5,111 +5,148 @@
   <title>Gestión de Vehículos de Visitantes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .pagination {
+      justify-content: center;
+    }
+    tbody tr {
+      display: none;
+    }
+  </style>
 </head>
 <body class="bg-light p-4">
 
   <div class="container">
     <h2 class="mb-4 text-success"><i class="fas fa-car me-2"></i>Gestión de Vehículos de Visitantes</h2>
-
+    
     <div class="table-responsive">
       <table class="table table-bordered table-hover shadow-sm bg-white align-middle">
-        <thead class="table-success">
+        <thead class="table-success text-center">
           <tr>
-            <th>ID</th>
-            <th>Rol</th>
-            <th>Nombre HU</th>
-            <th>Objetivo</th>
-            <th>Prioridad</th>
-            <th>Criterio de Aceptación</th>
-            <th>Escenario</th>
-            <th>Acción</th>
-            <th>Resultado Esperado</th>
+            <th>ID Registro</th>
+            <th>Visitante</th>
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Hora de Ingreso</th>
+            <th>Espacio Asignado</th>
+            <th>Estado</th>
+            <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>HU-031</td>
-            <td>Administrador</td>
-            <td>Registrar vehículo de visitante</td>
-            <td>Permitir que un vehículo de visitante sea registrado en el sistema.</td>
-            <td>1</td>
-            <td>Registro exitoso de vehículo de visitante</td>
-            <td>Un visitante llega a la propiedad con su vehículo.</td>
-            <td>El administrador registra los detalles del vehículo (placa, modelo, propietario, etc.), así como la dirección de la unidad a la que se dirige.</td>
-            <td>El sistema registra correctamente los datos del vehículo y asigna un espacio.</td>
-          </tr>
-          <tr>
-            <td>HU-032</td>
-            <td>Administrador</td>
-            <td>Verificar disponibilidad de espacio para vehículos de visitantes</td>
-            <td>Asegurarse de que haya espacio disponible para los visitantes.</td>
-            <td>1</td>
-            <td>Verificación exitosa de espacio disponible para vehículos visitantes</td>
-            <td>Un visitante solicita acceso al parqueadero.</td>
-            <td>El sistema verifica si hay espacios libres disponibles para asignar a un vehículo visitante.</td>
-            <td>El sistema informa si hay o no espacio disponible para el visitante.</td>
-          </tr>
-          <tr>
-            <td>HU-033</td>
-            <td>Administrador</td>
-            <td>Establecer duración de estancia del vehículo de visitante</td>
-            <td>Definir cuánto tiempo un visitante puede usar el parqueadero.</td>
-            <td>1</td>
-            <td>Duración de estancia registrada correctamente</td>
-            <td>El vehículo de un visitante ha sido registrado.</td>
-            <td>El administrador ingresa la duración estimada de la estancia del vehículo del visitante.</td>
-            <td>El sistema calcula la duración y la almacena.</td>
-          </tr>
-          <tr>
-            <td>HU-034</td>
-            <td>Administrador</td>
-            <td>Eliminar o actualizar registro vehículo de visitante</td>
-            <td>Actualizar la información o eliminar el registro de un vehículo de visitante.</td>
-            <td>1</td>
-            <td>Eliminación/actualización exitosa de vehículo de visitante</td>
-            <td>El visitante se va o cambia de vehículo.</td>
-            <td>El administrador actualiza o elimina el registro del vehículo de visitante.</td>
-            <td>El registro del vehículo es eliminado o actualizado en el sistema correctamente.</td>
-          </tr>
-          <tr>
-            <td>HU-035</td>
-            <td>Administrador</td>
-            <td>Notificar al propietario sobre la llegada de un visitante con vehículo</td>
-            <td>Mantener informado al propietario sobre la presencia de un visitante en su unidad.</td>
-            <td>1</td>
-            <td>Notificación exitosa enviada al propietario sobre un visitante</td>
-            <td>Un visitante llega con su vehículo.</td>
-            <td>El sistema envía una notificación al propietario de la unidad donde se estacionará el vehículo del visitante.</td>
-            <td>El propietario recibe la notificación de que su visitante está estacionado.</td>
-          </tr>
-          <tr>
-            <td>HU-036</td>
-            <td>Administrador</td>
-            <td>Verificar el tiempo de permanencia</td>
-            <td>Permite verificar cuánto tiempo ha permanecido un vehículo en el parqueadero.</td>
-            <td>1</td>
-            <td>Tiempo de permanencia verificado correctamente</td>
-            <td>El administrador necesita saber cuánto tiempo ha estado un vehículo en el parqueadero.</td>
-            <td>El administrador o el sistema calcula el tiempo de permanencia del vehículo.</td>
-            <td>El sistema muestra el tiempo total de ocupación del vehículo.</td>
-          </tr>
-          <tr>
-            <td>HU-037</td>
-            <td>Administrador</td>
-            <td>Cobrar tarifas y descuentos automáticos</td>
-            <td>Permitir aplicar tarifas y descuentos según condiciones específicas.</td>
-            <td>1</td>
-            <td>Tarifa aplicada correctamente</td>
-            <td>El administrador gestiona el cobro de tarifas por uso de parqueadero.</td>
-            <td>El sistema calcula y aplica automáticamente tarifas según tiempo de permanencia y condiciones del vehículo.</td>
-            <td>El sistema muestra la tarifa y el descuento aplicado.</td>
-          </tr>
+        <tbody id="tablaVehiculos">
+          <!-- Filas generadas dinámicamente -->
         </tbody>
       </table>
     </div>
+
+    <!-- Paginación -->
+    <nav>
+      <ul class="pagination mt-4" id="paginacionVehiculos"></ul>
+    </nav>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Lista de nombres colombianos para visitantes
+    const nombresColombianos = [
+      "Juan Pérez", "María Rodríguez", "Carlos Gómez", "Ana Martínez", "Luis García", 
+      "Sofía López", "Andrés Torres", "Camila Herrera", "Ricardo Moreno", "Luisa Sánchez", 
+      "David Álvarez", "Patricia Castro", "Francisco Rojas", "Laura Díaz", "Jorge Ramírez", 
+      "Carmen Reyes", "Santiago Morales", "Isabel Castillo", "Diego Martínez", "Andrea González", 
+      "Miguel Fernando", "Elena Pineda", "Daniela Vargas", "Felipe Soto", "Gabriela Martínez", 
+      "Héctor Mejía", "Verónica Quintero", "Eduardo Calderón", "Valentina Gómez", "Manuel Castañeda"
+    ];
+
+    // Lista de modelos de vehículos representativos
+    const modelos = [
+      "Toyota Corolla", "Chevrolet Spark", "Mazda 3", "Hyundai Accent", "Renault Logan"
+    ];
+
+    // Generación de 30 ejemplos con datos acordes a la gestión de vehículos de visitantes
+    const datosVehiculos = Array.from({ length: 30 }, (_, i) => {
+      const idRegistro = (i + 1).toString().padStart(2, '0');
+      // Generación de placa: combinación de 3 letras y 3 dígitos
+      const placa = `ABC-${(100 + i)}`;
+      // Selecciona modelo cíclicamente
+      const modelo = modelos[i % modelos.length];
+      // Simula hora de ingreso incrementando 5 minutos por registro (ejemplo simple)
+      const horaIngreso = new Date(2025, 3, 14, 8, 0 + i * 5); // Nota: el mes 3 corresponde a abril (0-indexado)
+      const opcionesFecha = { hour: '2-digit', minute: '2-digit' };
+      const horaFormateada = horaIngreso.toLocaleTimeString('es-CO', opcionesFecha);
+      // Espacio asignado: por ejemplo "A1", "B2", etc.
+      const espacio = `E${(i % 10) + 1}`;
+      // Alterna estado entre "Activo" y "Retirado"
+      const estado = i % 2 === 0 ? "Activo" : "Retirado";
+      
+      return {
+        id: `REG-${idRegistro}`,
+        visitante: nombresColombianos[i],
+        placa: placa,
+        modelo: modelo,
+        horaIngreso: horaFormateada,
+        espacio: espacio,
+        estado: estado,
+        acciones: `<button class="btn btn-sm btn-primary me-1">Editar</button>
+                   <button class="btn btn-sm btn-danger">Eliminar</button>`
+      };
+    });
+
+    const filasPorPagina = 10;
+    let paginaActual = 1;
+
+    // Función para mostrar la página deseada
+    function mostrarPagina(pagina) {
+      const tbody = document.getElementById('tablaVehiculos');
+      tbody.innerHTML = '';
+
+      const inicio = (pagina - 1) * filasPorPagina;
+      const fin = inicio + filasPorPagina;
+      const datosPagina = datosVehiculos.slice(inicio, fin);
+
+      datosPagina.forEach(dato => {
+        const fila = `
+          <tr>
+            <td>${dato.id}</td>
+            <td>${dato.visitante}</td>
+            <td>${dato.placa}</td>
+            <td>${dato.modelo}</td>
+            <td>${dato.horaIngreso}</td>
+            <td>${dato.espacio}</td>
+            <td>${dato.estado}</td>
+            <td class="text-center">${dato.acciones}</td>
+          </tr>
+        `;
+        tbody.insertAdjacentHTML('beforeend', fila);
+      });
+
+      // Actualiza la apariencia de los botones de paginación
+      document.querySelectorAll('.pagination .page-item').forEach(el => el.classList.remove('active'));
+      document.getElementById(`pag-${pagina}`).classList.add('active');
+    }
+
+    // Función para crear la paginación
+    function crearPaginacion() {
+      const paginacion = document.getElementById('paginacionVehiculos');
+      const totalPaginas = Math.ceil(datosVehiculos.length / filasPorPagina);
+      for (let i = 1; i <= totalPaginas; i++) {
+        const item = document.createElement('li');
+        item.className = 'page-item' + (i === paginaActual ? ' active' : '');
+        item.id = `pag-${i}`;
+        item.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          paginaActual = i;
+          mostrarPagina(paginaActual);
+        });
+        paginacion.appendChild(item);
+      }
+    }
+
+    // Inicializa la tabla y la paginación al cargar la página
+    crearPaginacion();
+    mostrarPagina(paginaActual);
+  </script>
 </body>
 </html>
