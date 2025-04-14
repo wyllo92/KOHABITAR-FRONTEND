@@ -27,11 +27,18 @@
                 <i class="fa-solid fa-user"></i> Mi Cuenta
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="#" onclick="cargarVista('perfil.html')"><i
-                            class="fa-solid fa-user-pen me-2"></i>Editar Perfil</a></li>
-                <li><a class="dropdown-item" href="login.html" onclick="cerrarSesion()"><i
-                            class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión</a></li>
+                <li>
+                    <a class="dropdown-item" href="#" onclick="cargarVista('perfil.html')">
+                        <i class="fa-solid fa-user-pen me-2"></i>Editar Perfil
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="logout.html" onclick="cerrarSesionYRedirigir()">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión
+                    </a>
+                </li>
             </ul>
+            
         </div>
     </header>
 
@@ -47,7 +54,7 @@
                     </a>
                     <div id="usuariosCollapse" class="accordion-collapse collapse submenu ps-3"
                         data-bs-parent="#menuAccordion">
-                        <a href="#" onclick="cargarVista('USUARIOS/usuarios.html')">Gestión de Usuarios</a>
+                        <a href="#" onclick="cargarVista('USUARIOS/Usuarios.html')">Gestión de Usuarios</a>
                         <a href="#" onclick="cargarVista('USUARIOS/Propiedades.html')">Gestión de Propiedades</a>
                     </div>
 

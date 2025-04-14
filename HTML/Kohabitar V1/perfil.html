@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfil de Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/perfil-style.css" />
+</head>
+
+<body>
+
+    <div class="container py-5">
+        <div class="card perfil-card mx-auto p-4">
+            <div class="row g-3 align-items-center">
+                <!-- Columna Izquierda -->
+                <div class="col-md-5 text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Foto perfil"
+                        class="rounded-circle perfil-img mb-3" />
+                    <h4>Admin Admin</h4>
+                    <p class="text-muted">👤 Usuario: <strong>admin</strong></p>
+                    <p class="text-muted">🛡️ Rol: <strong>Administrador</strong></p>
+                </div>
+
+                <!-- Columna Derecha - Formulario -->
+                <div class="col-md-7">
+                    <form id="perfilForm" class="row g-3 needs-validation" novalidate>
+                        <div class="col-12">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" placeholder="304 879 6541" required />
+                            <div class="invalid-feedback">Por favor ingresa un número de teléfono válido.</div>
+                        </div>
+                        <div class="col-12">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" placeholder="admin@correo.com"
+                                required />
+                            <div class="invalid-feedback">Por favor ingresa un correo válido.</div>
+                        </div>
+                        <div class="col-12">
+                            <label for="casa" class="form-label">Casa</label>
+                            <input type="text" class="form-control" id="casa" placeholder="Ej: Casa 152" required />
+                            <div class="invalid-feedback">Este campo es obligatorio.</div>
+                        </div>
+                        <div class="col-12">
+                            <label for="vehiculo" class="form-label">Vehículo</label>
+                            <input type="text" class="form-control" id="vehiculo" placeholder="Ej: Placa ABC123"
+                                required />
+                            <div class="invalid-feedback">Este campo es obligatorio.</div>
+                        </div>
+                        <div class="col-12 text-end mt-3">
+                            <button type="button" class="btn btn-secondary" onclick="cerrarVista()">Volver</button>
+
+                            <!-- Botón para cambiar contraseña -->
+                            <button type="button" class="btn btn-warning" onclick="irACambiarContrasena()">
+                                Cambiar Contraseña
+                            </button>
+
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+
+                    </form>
+
+                    <!-- Alerta de éxito -->
+                    <div id="alertaGuardado" class="alert alert-success mt-4 d-none" role="alert">
+                        ✅ ¡Cambios guardados exitosamente!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS + Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validación + Alerta de éxito
+        document.getElementById('perfilForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = this;
+
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            // Mostrar alerta
+            document.getElementById('alertaGuardado').classList.remove('d-none');
+            form.classList.remove('was-validated');
+        });
+        function irACambiarContrasena() {
+            window.location.href = "contrasena.html";
+        }
+        // Cerrar vista (sin recargar)
+        function cerrarVista() {
+            // Si está dentro de un iframe o sección dinámica
+            if (window.history.length > 1) {
+                window.history.back(); // Simula ir atrás
+            } else {
+                // Alternativa: cerrar ventana emergente o sección SPA
+                window.close(); // Solo si fue abierto con window.open
+            }
+        }
+    </script>
+</body>
+
+</html>
