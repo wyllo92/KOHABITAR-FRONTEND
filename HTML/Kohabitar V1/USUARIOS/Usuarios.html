@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Gestión de Usuarios</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body class="p-4 d-flex flex-column min-vh-100">
 
   <div class="container flex-grow-1 py-4">
@@ -40,7 +42,59 @@
             </button>
           </td>
         </tr>
-        <!-- Más usuarios aquí -->
+        <tr>
+          <td>Raton Pérez</td>
+          <td>raton.perez@correo.com</td>
+          <td>Residente</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuarioModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Juanita Preguntona</td>
+          <td>juanita.preguntona@correo.com</td>
+          <td>Propietario</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuarioModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Carlos Ruiz</td>
+          <td>carlos.ruiz@correo.com</td>
+          <td>Vigilante</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuarioModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>María Rodríguez</td>
+          <td>maria.rodriguez@correo.com</td>
+          <td>Administrador</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuarioModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+
       </tbody>
     </table>
   </div>
@@ -119,7 +173,8 @@
   </div>
 
   <!-- Modal: Eliminar Usuario -->
-  <div class="modal fade" id="eliminarUsuarioModal" tabindex="-1" aria-labelledby="eliminarUsuarioLabel" aria-hidden="true">
+  <div class="modal fade" id="eliminarUsuarioModal" tabindex="-1" aria-labelledby="eliminarUsuarioLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>
@@ -142,4 +197,5 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
