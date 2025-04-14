@@ -11,103 +11,138 @@
     <link rel="stylesheet" href="CSS/Index.css">
 </head>
 
-<body>
-    <div class="sidebar">
-        <h4 class="text-center mb-4"><a onclick="cargarVista('dashboard.html')">KOHABITAR</a></h4>
+<body class="min-vh-100 d-flex flex-column">
+    <header class="w-100 d-flex justify-content-between align-items-center px-4 py-2 border-bottom shadow-sm">
+        <div class="d-flex align-items-center">
+            <img src="IMG/logo-kohabitar.png" alt="Logo" height="40" class="me-2">
+            <h5 class="mb-0">KOHABITAR</h5>
+        </div>
 
-        <div class="accordion" id="menuAccordion">
-            <!-- Usuarios -->
-            <div class="accordion-item bg-transparent border-0">
-                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#usuariosCollapse" role="button" aria-expanded="false">
-                    <span><i class="fa-solid fa-users"></i>Usuarios/Propiedades</span>
-                    <i class="fas fa-chevron-right rotate-icon"></i>
-                </a>
-                <div id="usuariosCollapse" class="accordion-collapse collapse submenu ps-3"
-                    data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('USUARIOS/usuarios.html')">Gestión de Usuarios</a>
-                    <a href="#" onclick="cargarVista('USUARIOS/Propiedades.html')">Gestión de Propiedades</a>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-user"></i> Mi Cuenta
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="#" onclick="cargarVista('perfil.html')"><i
+                            class="fa-solid fa-user-pen me-2"></i>Editar Perfil</a></li>
+                <li><a class="dropdown-item" href="login.html" onclick="cerrarSesion()"><i
+                            class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="d-flex">
+        <div class="sidebar">
+            <a onclick="cargarVista('dashboard.html')">
+                <h4 class="text-center mb-4"></h4>KOHABITAR</h4>
+            </a>
+            <div class="accordion" id="menuAccordion">
+                <!-- Usuarios -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#usuariosCollapse" role="button" aria-expanded="false">
+                        <span><i class="fa-solid fa-users"></i>Usuarios/Propiedades</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="usuariosCollapse" class="accordion-collapse collapse submenu ps-3"
+                        data-bs-parent="#menuAccordion">
+                        <a href="#" onclick="cargarVista('USUARIOS/usuarios.html')">Gestión de Usuarios</a>
+                        <a href="#" onclick="cargarVista('USUARIOS/Propiedades.html')">Gestión de Propiedades</a>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <!-- Parqueaderos -->
-            <div class="accordion-item bg-transparent border-0">
-                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#parqueaderosCollapse" role="button" aria-expanded="false">
-                    <span><i class="fas fa-car"></i> Parqueaderos</span>
-                    <i class="fas fa-chevron-right rotate-icon"></i>
-                </a>
-                <div id="parqueaderosCollapse" class="accordion-collapse collapse submenu ps-3"
-                    data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('PARQUEADEROS/AsignarParqueadero.html')">Asignar Parqueadero</a>
-                    <a href="#" onclick="cargarVista('PARQUEADEROS/RegistroParqueadero.html')">Registro de Parqueaderos</a>
-                    <a href="#" onclick="cargarVista('PARQUEADEROS/ReservaParqueadero.html')">Reserva de Parqueaderos</a>
+                <!-- Parqueaderos -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#parqueaderosCollapse" role="button" aria-expanded="false">
+                        <span><i class="fas fa-car"></i> Parqueaderos</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="parqueaderosCollapse" class="accordion-collapse collapse submenu ps-3"
+                        data-bs-parent="#menuAccordion">
+                        <a href="#" onclick="cargarVista('PARQUEADEROS/AsignarParqueadero.html')">Asignar
+                            Parqueadero</a>
+                        <a href="#" onclick="cargarVista('PARQUEADEROS/RegistroParqueadero.html')">Registro de
+                            Parqueaderos</a>
+                        <a href="#" onclick="cargarVista('PARQUEADEROS/ReservaParqueadero.html')">Reserva de
+                            Parqueaderos</a>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Seguridad -->
-            <div class="accordion-item bg-transparent border-0">
-                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#seguridadCollapse" role="button" aria-expanded="false">
-                    <span><i class="fas fa-shield-alt"></i> Registros</span>
-                    <i class="fas fa-chevron-right rotate-icon"></i>
-                </a>
-                <div id="seguridadCollapse" class="accordion-collapse collapse submenu ps-3"
-                    data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('VISITANTES/RegistroVisitante.html')">Registro de Visitantes</a>
-                    <a href="#" onclick="cargarVista('VISITANTES/RegistroVehiculoVisitante.html')">Registro de Visitantes</a>
+                <!-- Seguridad -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#seguridadCollapse" role="button" aria-expanded="false">
+                        <span><i class="fas fa-shield-alt"></i> Registros</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="seguridadCollapse" class="accordion-collapse collapse submenu ps-3"
+                        data-bs-parent="#menuAccordion">
+                        <a href="#" onclick="cargarVista('VISITANTES/RegistroVisitante.html')">Registro de
+                            Visitantes</a>
+                        <a href="#" onclick="cargarVista('VISITANTES/RegistroVehiculoVisitante.html')">Registro de
+                            Visitantes</a>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Zonas Comunes -->
 
-            <div class="accordion-item bg-transparent border-0">
-                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#zonasComunesCollapse" role="button" aria-expanded="false">
-                    <span><i class="fas fa-shield-alt"></i> Zonas Comunes</span>
-                    <i class="fas fa-chevron-right rotate-icon"></i>
-                </a>
-                <div id="zonasComunesCollapse" class="accordion-collapse collapse submenu ps-3"
-                    data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes.html')">Registro de Visitantes</a>
-                    <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes2.html')">Registro de Visitantes</a>
+                <!-- Zonas Comunes -->
+
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#zonasComunesCollapse" role="button" aria-expanded="false">
+                        <span><i class="fas fa-shield-alt"></i> Zonas Comunes</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="zonasComunesCollapse" class="accordion-collapse collapse submenu ps-3"
+                        data-bs-parent="#menuAccordion">
+                        <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes.html')">Registro de Visitantes</a>
+                        <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes2.html')">Registro de Visitantes</a>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Pagos -->
-            <div class="accordion-item bg-transparent border-0">
-                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#pagosCollapse" role="button" aria-expanded="false">
-                    <span><i class="fas fa-money-bill"></i> Pagos</span>
-                    <i class="fas fa-chevron-right rotate-icon"></i>
-                </a>
-                <div id="pagosCollapse" class="accordion-collapse collapse submenu ps-3"
-                    data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('generar_factura.html')">Generar Factura</a>
-                    <a href="#" onclick="cargarVista('historial_pagos.html')">Historial de Pagos</a>
+                <!-- Pagos -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#pagosCollapse" role="button" aria-expanded="false">
+                        <span><i class="fas fa-money-bill"></i> Pagos</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="pagosCollapse" class="accordion-collapse collapse submenu ps-3"
+                        data-bs-parent="#menuAccordion">
+                        <a href="#" onclick="cargarVista('generar_factura.html')">Generar Factura</a>
+                        <a href="#" onclick="cargarVista('historial_pagos.html')">Historial de Pagos</a>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Reportes -->
-            <div class="accordion-item bg-transparent border-0">
-                <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                    href="#reportesCollapse" role="button" aria-expanded="false">
-                    <span><i class="fas fa-chart-bar"></i> Reportes</span>
-                    <i class="fas fa-chevron-right rotate-icon"></i>
-                </a>
-                <div id="reportesCollapse" class="accordion-collapse collapse submenu ps-3"
-                    data-bs-parent="#menuAccordion">
-                    <a href="#" onclick="cargarVista('reportes_financieros.html')">Reportes Financieros</a>
-                    <a href="#" onclick="cargarVista('reportes_residentes.html')">Reportes de Residentes</a>
+                <!-- Reportes -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#reportesCollapse" role="button" aria-expanded="false">
+                        <span><i class="fas fa-chart-bar"></i> Reportes</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="reportesCollapse" class="accordion-collapse collapse submenu ps-3"
+                        data-bs-parent="#menuAccordion">
+                        <a href="#" onclick="cargarVista('reportes_financieros.html')">Reportes Financieros</a>
+                        <a href="#" onclick="cargarVista('reportes_residentes.html')">Reportes de Residentes</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Contenido dinámico -->
-    <div class="content">
-        <iframe id="vistaFrame" src="dashboard.html"></iframe>
+        <div class="main-content">
+            <!-- Contenido dinámico -->
+            <div class="content">
+                <iframe id="vistaFrame" src="dashboard.html"></iframe>
+            </div>
+            <footer class="text-black text-center py-3 bg-white mt-auto shadow-sm">
+                <p class="mb-0">&copy; 2025 Sistema de Gestión de Propiedad Horizontal. Todos los derechos reservados.
+                </p>
+                <small>Desarrollado por Kohabitar cloud</small>
+            </footer>
+        </div>
     </div>
 
     <script>
