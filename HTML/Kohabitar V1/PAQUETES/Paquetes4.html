@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acciones sobre paquetes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="container py-5">
+        <h2 class="mb-4 text-success">⚙️ Acciones sobre Paquetes</h2>
+
+        <!-- Selección de paquete y acción -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <form class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label class="form-label">Paquete</label>
+                        <select class="form-select">
+                            <option>Amazon - Ana Ruiz - Casa 65</option>
+                            <option>AliExpress - David Moreno - Casa 24</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label">Acción</label>
+                        <select class="form-select">
+                            <option>Entregar a servicio de correos</option>
+                            <option>Marcar como no reclamado</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="alert alert-info" role="alert">
+            ℹ️ El paquete de David Moreno fue marcado como <strong>No reclamado</strong>.
+        </div>
+    </div>
+</body>
+
+</html>
