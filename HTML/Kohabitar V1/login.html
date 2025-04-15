@@ -6,13 +6,6 @@
     <title>Login - Kohabitar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-        // Bloquear acceso si no está autenticado
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "login.html";
-        }
-    </script>
-
 </head>
 
 <body class="bg-light d-flex justify-content-center align-items-center" style="height: 100vh;">
@@ -35,6 +28,11 @@
     </div>
 
     <script>
+        // Verificación de autenticación solo en la página de login
+        if (window.location.pathname === "/login.html" && localStorage.getItem("isLoggedIn") === "true") {
+            window.location.href = "index.html"; // Redirigir a la página de inicio si ya está logueado
+        }
+
         document.getElementById("loginForm").addEventListener("submit", function (event) {
             event.preventDefault();
 
@@ -52,9 +50,7 @@
             } else {
                 document.getElementById("errorMsg").style.display = "block";
             }
-
-        }
-        );
+        });
     </script>
 </body>
 
