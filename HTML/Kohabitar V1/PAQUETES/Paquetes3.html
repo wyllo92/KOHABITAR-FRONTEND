@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestión de Paquetes No Reclamados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container py-5">
+        <h1 class="text-center text-primary mb-4">📦 Gestión de Paquetes No Reclamados</h1>
+
+        <!-- Filtros -->
+        <div class="seccion-paquetes mb-4">
+            <h5 class="card-title">🔍 Filtrar paquetes</h5>
+            <form class="row g-3 align-items-end">
+                <div class="col-md-6">
+                    <label class="form-label">Filtrar por nombre del propietario</label>
+                    <input type="text" class="form-control" placeholder="Ej: Ana Ruiz">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Días sin reclamar</label>
+                    <select class="form-select">
+                        <option value="">Todos</option>
+                        <option value="7">Más de 7 días</option>
+                        <option value="15">Más de 15 días</option>
+                        <option value="30">Más de 30 días</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary w-100">Aplicar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla de paquetes -->
+        <div class="table-responsive mb-5">
+            <h5 class="text-secondary mb-2">📋 Lista de paquetes no reclamados</h5>
+            <table class="table table-striped table-hover text-center align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Propietario</th>
+                        <th>Proveedor</th>
+                        <th>Casa</th>
+                        <th>Días sin reclamar</th>
+                        <th>Fecha recepción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana Ruiz</td>
+                        <td>Amazon</td>
+                        <td>Casa 101</td>
+                        <td>12</td>
+                        <td>2025-04-01</td>
+                    </tr>
+                    <tr>
+                        <td>David Moreno</td>
+                        <td>AliExpress</td>
+                        <td>Casa 204</td>
+                        <td>16</td>
+                        <td>2025-03-28</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Acciones -->
+        <div class="seccion-paquetes">
+            <h5 class="card-title">⚙️ Acciones sobre paquetes</h5>
+            <form class="row g-3 align-items-end">
+                <div class="col-md-5">
+                    <label class="form-label">Seleccionar paquete</label>
+                    <select class="form-select">
+                        <option>Amazon - Ana Ruiz - Casa 101</option>
+                        <option>AliExpress - David Moreno - Casa 204</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label">Acción a realizar</label>
+                    <select class="form-select">
+                        <option>Entregar a servicio de correos</option>
+                        <option>Marcar como no reclamado</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success w-100">Registrar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Mensaje de confirmación -->
+        <div class="alert alert-info mt-4" role="alert">
+            ℹ️ El paquete de David Moreno fue marcado como <strong>No reclamado</strong>.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

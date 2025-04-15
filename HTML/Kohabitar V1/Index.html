@@ -14,8 +14,11 @@
 <body class="min-vh-100 d-flex flex-column">
     <header class="w-100 d-flex justify-content-between align-items-center px-4 py-2 border-bottom shadow-sm">
         <div class="d-flex align-items-center">
-            <img src="IMG/logo-kohabitar.png" alt="Logo" height="40" class="me-2">
-            <h5 class="mb-0">KOHABITAR</h5>
+            <a href="index.html" onclick="cargarVista('dashboard.html')"
+                style="display: inline-flex; align-items: center;">
+                <img src="IMG/logo-kohabitar.png" alt="Logo" height="40" class="me-2">
+                <h5 class="mb-0">KOHABITAR</h5>
+            </a>
         </div>
 
         <div class="dropdown">
@@ -34,9 +37,6 @@
 
     <div class="d-flex">
         <div class="sidebar">
-            <a onclick="cargarVista('dashboard.html')">
-                <h4 class="text-center mb-4"></h4>KOHABITAR</h4>
-            </a>
             <div class="accordion" id="menuAccordion">
                 <!-- Usuarios -->
                 <div class="accordion-item bg-transparent border-0">
@@ -128,6 +128,40 @@
                         <a href="#" onclick="cargarVista('reportes_financieros.html')">Reportes Financieros</a>
                         <a href="#" onclick="cargarVista('reportes_residentes.html')">Reportes de Residentes</a>
                     </div>
+                    <!-- Notificaciones -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                            href="#notificacionesCollapse" role="button" aria-expanded="false">
+                            <span><i class="fas fa-chart-bar"></i> Notificaciones</span>
+                            <i class="fas fa-chevron-right rotate-icon"></i>
+                        </a>
+                        <div id="notificacionesCollapse" class="accordion-collapse collapse submenu ps-3"
+                            data-bs-parent="#menuAccordion">
+                            <a href="#" onclick="cargarVista('NOTIFICACIONES/mainNotificaciones.html')">Añadir
+                                notificación</a>
+                            <a href="#"
+                                onclick="cargarVista('NOTIFICACIONES/ejemNotificaciones.html')">Notificaciones</a>
+                        </div>
+                    </div>
+                    <!-- Paquetes -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                            href="#paquetesCollapse" role="button" onclick="cargarVista('PAQUETES/Paquetes1.html')">
+                            <span><i class="fas fa-chart-bar"></i> Paquetes</span>
+                            <i class="fas fa-chevron-right rotate-icon"></i>
+                        </a>
+
+                        <div id="paquetesCollapse" class="accordion-collapse collapse submenu ps-3"
+                            data-bs-parent="#menuAccordion">
+                            <a href="#" onclick="cargarVista('PAQUETES/Paquetes2.html')">Paquetes recibidos</a>
+                        </div>
+                        <div id="paquetesCollapse" class="accordion-collapse collapse submenu ps-3"
+                            data-bs-parent="#menuAccordion">
+                            <a href="#" onclick="cargarVista('PAQUETES/Paquetes3.html')">Paquetes no reclamados</a>
+                        </div>
+                    </div>
+                    <!-- Contenedor donde se cargarán las vistas -->
+                    <div id="contenidoVista"></div>
                 </div>
             </div>
         </div>
