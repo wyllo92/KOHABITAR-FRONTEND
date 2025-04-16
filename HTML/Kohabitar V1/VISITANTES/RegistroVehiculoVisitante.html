@@ -112,7 +112,7 @@
     let paginaActual = 1;
 
     const vehiculos = Array.from({ length: 30 }, (_, i) => ({
-      id: `REG-${(i + 1).toString().padStart(2, '0')}`,
+      id: `000-${(i + 1).toString().padStart(2, '0')}`,
       visitante: nombres[i],
       placa: `XYZ-${(100 + i)}`,
       modelo: modelos[i % modelos.length],
