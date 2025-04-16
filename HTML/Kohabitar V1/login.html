@@ -78,11 +78,11 @@
             }
 
             // Validación de contraseña segura
-            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-            if (password && !passwordRegex.test(password)) {
-                document.getElementById("passwordStrengthError").style.display = "block";
-                valid = false;
-            }
+            //const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            //if (password && !passwordRegex.test(password)) {
+            //    document.getElementById("passwordStrengthError").style.display = "block";
+            //    valid = false;
+            //}
 
             if (!valid) {
                 return; // No continuar si hay errores
