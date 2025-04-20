@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Gestión de Visitantes</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Vehículos de Visitantes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="visitante1.css">
 </head>
 
 <body class="p-4 bg-light">
@@ -61,8 +62,8 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h5 class="modal-title" id="crearVisitanteLabel">Registrar Visitante</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <h5 class="modal-title" id="modalAgregarLabel">Agregar Visitante</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="mb-3">
@@ -98,14 +99,9 @@
               <input type="text" class="form-control">
             </div>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-success">Registrar</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
 
   <!-- Modal: Editar Visitante -->
   <div class="modal fade" id="editarVisitanteModal" tabindex="-1" aria-labelledby="editarVisitanteLabel"
@@ -114,8 +110,8 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h5 class="modal-title" id="editarVisitanteLabel">Editar Visitante</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <h5 class="modal-title" id="modalEditarLabel">Editar Visitante</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="mb-3">
@@ -151,14 +147,9 @@
               <input type="text" class="form-control" value="Ana Ruiz">
             </div>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-warning">Actualizar</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
 
   <!-- Modal: Eliminar Visitante -->
   <div class="modal fade" id="eliminarVisitanteModal" tabindex="-1" aria-labelledby="eliminarVisitanteLabel"
@@ -167,17 +158,17 @@
       <div class="modal-content">
         <form>
           <div class="modal-header">
-            <h5 class="modal-title" id="eliminarVisitanteLabel">Eliminar Visitante</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <h5 class="modal-title" id="modalEliminarLabel">Eliminar Visitante</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ¿Está seguro que desea eliminar al visitante <strong>Carlos Gómez</strong>?
+            <p>¿Estás seguro de que deseas eliminar este registro?</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

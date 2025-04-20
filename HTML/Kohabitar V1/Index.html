@@ -27,11 +27,18 @@
                 <i class="fa-solid fa-user"></i> Mi Cuenta
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="#" onclick="cargarVista('perfil.html')"><i
-                            class="fa-solid fa-user-pen me-2"></i>Editar Perfil</a></li>
-                <li><a class="dropdown-item" href="login.html" onclick="cerrarSesion()"><i
-                            class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión</a></li>
+                <li>
+                    <a class="dropdown-item" href="#" onclick="cargarVista('perfil.html')">
+                        <i class="fa-solid fa-user-pen me-2"></i>Editar Perfil
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="logout.html" onclick="cerrarSesionYRedirigir()">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar Sesión
+                    </a>
+                </li>
             </ul>
+
         </div>
     </header>
 
@@ -47,7 +54,7 @@
                     </a>
                     <div id="usuariosCollapse" class="accordion-collapse collapse submenu ps-3"
                         data-bs-parent="#menuAccordion">
-                        <a href="#" onclick="cargarVista('USUARIOS/usuarios.html')">Gestión de Usuarios</a>
+                        <a href="#" onclick="cargarVista('USUARIOS/Usuarios.html')">Gestión de Usuarios</a>
                         <a href="#" onclick="cargarVista('USUARIOS/Propiedades.html')">Gestión de Propiedades</a>
                     </div>
 
@@ -71,18 +78,20 @@
                     </div>
                 </div>
 
-                <!-- Seguridad -->
+                <!-- Visitas -->
                 <div class="accordion-item bg-transparent border-0">
                     <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                        href="#seguridadCollapse" role="button" aria-expanded="false">
-                        <span><i class="fas fa-shield-alt"></i> Registros</span>
+                        href="#visitasCollapse" role="button" role="button" onclick="cargarVista('VISITANTES/Visitas.html')"aria-expanded="false">
+                        <span><i class="fas fa-shield-alt"></i> Visitas</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="seguridadCollapse" class="accordion-collapse collapse submenu ps-3"
+                    <div id="visitasCollapse" class="accordion-collapse collapse submenu ps-3"
                         data-bs-parent="#menuAccordion">
                         <a href="#" onclick="cargarVista('VISITANTES/RegistroVisitante.html')">Registro de
                             Visitantes</a>
-                        <a href="#" onclick="cargarVista('VISITANTES/RegistroVehiculoVisitante.html')">xxxx</a>
+                        <a href="#" onclick="cargarVista('VISITANTES/RegistroVehiculoVisitante.html')">Gestión de
+                            vehículos de
+                            visitantes</a>
                     </div>
                 </div>
 
