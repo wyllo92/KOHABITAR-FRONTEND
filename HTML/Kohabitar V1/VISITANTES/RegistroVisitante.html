@@ -6,157 +6,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestión de Vehículos de Visitantes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="visitante1.css">
 </head>
 
-<body class="p-4 bg-light">
+<body>
+  <div class="container-fluid mt-4">
+    <h2 class="text-center">Gestión de Visitantes</h2>
 
-  <div class="container-fluid">
-    <h2 class="mb-4">Gestión de Visitantes</h2>
+    <!-- Contenedor del buscador -->
+    <div class="search-container position-absolute">
+      <input class="form-control py-2 rounded-pill pr-5" type="search" placeholder="Buscar..." id="search-input">
+      <button class="btn position-absolute top-50 end-0 translate-middle-y me-2" type="button">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
 
-    <!-- Botón: Crear visitante -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearVisitanteModal">
-      <i class="fa fa-user-plus"></i> Nuevo Registro
-    </button>
+    <!-- Botón para agregar nuevo registro -->
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar Visitante</button>
+    </div>
 
-    <!-- Tabla de visitantes -->
-    <table class="table table-bordered table-hover bg-white shadow-sm">
-      <thead class="table-light">
+    <!-- Tabla de Vehículos de Visitantes -->
+    <table class="table table-bordered">
+      <thead class="table-dark">
         <tr>
-          <th title="Nombre completo del visitante">Nombre</th>
+          <th>#</th>
+          <th>Nombre Visitante</th>
           <th title="Numero de identificacion del visitante">identificacion</th>
-          <th title="Fecha y hora de entrada del visitante">entrada</th>
-          <th title="Fecha y hora de salida del visitante">salida</th>
-          <th title="Id de la propiedad a la que ingresa">propiedad</th>
-          <th title="¿tiene vehiculo?">Vehículo</th>
-          <th title="Numero de la placa del vehiculo">Placa</th>
-          <th title="Accciones disponibles">Acciones</th>
+          <th>Casa</th>
+          <th>Residente a Visitar</th>
+          <th>Hora Entrada</th>
+          <th>Hora Salida</th>
+          <th>Acciones</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Carlos Gómez</td>
-          <td>12345678</td>
-          <td>15/01/2025 10:30</td>
-          <td>15/01/2025 16:45</td>
-          <td>101</td>
-          <td>no</td>
-          <td>N/A</td>
-          <td>
-            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarVisitanteModal">
-              <i class="fa fa-edit"></i>
-            </button>
-            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarVisitanteModal">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-        </tr>
+      <tbody id="tablaRegistros">
+        <!-- Registros serán insertados por JavaScript -->
       </tbody>
     </table>
-  </div>
 
-  <!-- Modal: Crear Visitante -->
-  <div class="modal fade" id="crearVisitanteModal" tabindex="-1" aria-labelledby="crearVisitanteLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center" id="pagination">
+        <!-- Paginación se generará por JavaScript -->
+      </ul>
+    </nav>
+
+    <!-- Modal Agregar -->
+    <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalAgregarLabel">Agregar Visitante</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="mb-3">
-              <label>Nombre completo</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label>Numero de identificación</label>
-              <input type="number" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label>Fecha y hora de entrada</label>
-              <input type="date" class="form-control">
-            </div>
+            <form id="formAgregar">
               <div class="mb-3">
-                <label>Fecha y hora de salida</label>
-                <input type="date" class="form-control">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required>
               </div>
-            <div class="mb-3">
-              <label>Id del Propietario/Residente a visitar</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label>Tiene Vehiculo</label>
-              <select class="form-select" required>
-                <option>Seleccione</option>
-                <option>Si</option>
-                <option>No</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label>Placa del vehiculo</label>
-              <input type="text" class="form-control">
-            </div>
+              <div class="mb-3">
+                <label for="identificacion" class="form-label">Identificacion</label>
+                <input type="number" class="form-control" id="identificacion" required>
+              </div>
+              <div class="mb-3">
+                <label for="casa" class="form-label">Casa</label>
+                <input type="number" class="form-control" id="casa" required>
+              </div>
+              <div class="mb-3">
+                <label for="residente" class="form-label">Residente a Visitar</label>
+                <input type="text" class="form-control" id="residente" required>
+              </div>
+              <div class="mb-3">
+                <label for="horaEntrada" class="form-label">Hora Entrada</label>
+                <input type="time" class="form-control" id="horaEntrada" required>
+              </div>
+              <div class="mb-3">
+                <label for="horaSalida" class="form-label">Hora Salida</label>
+                <input type="time" class="form-control" id="horaSalida">
+              </div>
+              <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
 
-  <!-- Modal: Editar Visitante -->
-  <div class="modal fade" id="editarVisitanteModal" tabindex="-1" aria-labelledby="editarVisitanteLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
+    <!-- Modal Editar -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalEditarLabel">Editar Visitante</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="mb-3">
-              <label>Nombre completo</label>
-              <input type="text" class="form-control" value="Carlos Gómez" required>
-            </div>
-            <div class="mb-3">
-              <label>Numero de identificación</label>
-              <input type="text" class="form-control" value="12345678" required>
-            </div>
-            <div class="mb-3">
-              <label>Fecha y hora de entrada</label>
-              <input type="date" class="form-control" value="ABC123">
-            </div>
-            <div class="mb-3">
-              <label>Fecha y hora de salida</label>
-              <input type="date" class="form-control" value="Ana Ruiz" required>
-            </div>
-            <div class="mb-3">
-              <label>Id del Propietario/Residente a visitar</label>
-              <input type="number" class="form-control" value="Ana Ruiz" required>
-            </div>
-            <div class="mb-3">
-              <label>Tiene Vehiculo</label>
-              <select class="form-select" required>
-                <option>Seleccione</option>
-                <option>Si</option>
-                <option>No</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label>Placa del vehiculo</label>
-              <input type="text" class="form-control" value="Ana Ruiz">
-            </div>
+            <form id="formEditar">
+              <input type="hidden" id="editIndex">
+              <div class="mb-3">
+                <label for="editNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="editNombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="editIdentificacion" class="form-label">Identificacion</label>
+                <input type="number" class="form-control" id="editIdentificacion" required>
+              </div>
+              <div class="mb-3">
+                <label for="editCasa" class="form-label">Casa</label>
+                <input type="number" class="form-control" id="editCasa" required>
+              </div>
+              <div class="mb-3">
+                <label for="editResidente" class="form-label">Residente a Visitar</label>
+                <input type="text" class="form-control" id="editResidente" required>
+              </div>
+              <div class="mb-3">
+                <label for="editHoraEntrada" class="form-label">Hora Entrada</label>
+                <input type="time" class="form-control" id="editHoraEntrada" required>
+              </div>
+              <div class="mb-3">
+                <label for="editHoraSalida" class="form-label">Hora Salida</label>
+                <input type="time" class="form-control" id="editHoraSalida">
+              </div>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
 
-  <!-- Modal: Eliminar Visitante -->
-  <div class="modal fade" id="eliminarVisitanteModal" tabindex="-1" aria-labelledby="eliminarVisitanteLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalEliminarLabel">Eliminar Visitante</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -173,8 +156,223 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const registros = [
+      { nombre: "Juan Camilo Rodríguez", identificacion: "1030625689", casa: 12, residente: "Carlos Patiño", horaEntrada: "10:15 AM", horaSalida: "12:00 PM" },
+      { nombre: "María Fernanda Pérez", identificacion: "1030625689", casa: 56, residente: "Lucía Herrera", horaEntrada: "11:30 AM", horaSalida: "01:00 PM" },
+      { nombre: "Andrés Felipe Gómez", identificacion: "1030625689", casa: 78, residente: "Miguel Salazar", horaEntrada: "12:00 PM", horaSalida: "02:00 PM" },
+      { nombre: "Valentina Ospina", identificacion: "1030625689", casa: 101, residente: "Natalia Ruiz", horaEntrada: "01:10 PM", horaSalida: "" },
+      { nombre: "Laura González", identificacion: "1030625689", casa: 45, residente: "Paola Mendoza", horaEntrada: "02:05 PM", horaSalida: "04:00 PM" },
+      { nombre: "Santiago López", identificacion: "1030625689", casa: 90, residente: "Cristian León", horaEntrada: "02:40 PM", horaSalida: "03:30 PM" },
+      { nombre: "Camila Ríos", identificacion: "1030625689", casa: 112, residente: "Luis Forero", horaEntrada: "03:00 PM", horaSalida: "" },
+      { nombre: "Carlos Andrés Méndez", identificacion: "1030625689", casa: 130, residente: "Sandra Díaz", horaEntrada: "03:30 PM", horaSalida: "05:00 PM" },
+      { nombre: "Daniela Vargas", identificacion: "1030625689", casa: 143, residente: "Elena Bustos", horaEntrada: "04:00 PM", horaSalida: "" },
+      { nombre: "Julián Castro", identificacion: "1030625689", casa: 153, residente: "Tatiana Rojas", horaEntrada: "04:30 PM", horaSalida: "06:00 PM" },
+      { nombre: "Isabella Torres", identificacion: "1030625689", casa: 160, residente: "Ana González", horaEntrada: "10:00 AM", horaSalida: "12:30 PM" },
+      { nombre: "Felipe Rodríguez", identificacion: "1030625689", casa: 170, residente: "Sofía García", horaEntrada: "09:00 AM", horaSalida: "" },
+      { nombre: "Victoria Ramírez", identificacion: "1030625689", casa: 180, residente: "Mauricio López", horaEntrada: "12:30 PM", horaSalida: "02:15 PM" },
+      { nombre: "Miguel Ángel Gómez", identificacion: "1030625689", casa: 190, residente: "Pablo Sánchez", horaEntrada: "08:00 AM", horaSalida: "10:00 AM" },
+      { nombre: "Juanita Vargas", identificacion: "1030625689", casa: 200, residente: "Juan Peña", horaEntrada: "11:00 AM", horaSalida: "" },
+      { nombre: "Carlos Alberto Martínez", identificacion: "1030625689", casa: 210, residente: "Rosa Morales", horaEntrada: "10:30 AM", horaSalida: "12:45 PM" },
+      { nombre: "Emilia Castro", identificacion: "1030625689", casa: 220, residente: "Guillermo Martínez", horaEntrada: "02:00 PM", horaSalida: "03:30 PM" },
+      { nombre: "Camilo Hernández", identificacion: "1030625689", casa: 230, residente: "Lina Ramos", horaEntrada: "04:30 PM", horaSalida: "06:00 PM" },
+      { nombre: "Martín Pérez", identificacion: "1030625689", casa: 240, residente: "Marta Ríos", horaEntrada: "09:30 AM", horaSalida: "11:00 AM" },
+      { nombre: "Manuela Díaz", identificacion: "1030625689", casa: 250, residente: "Carlos Torres", horaEntrada: "01:00 PM", horaSalida: "03:00 PM" },
+      { nombre: "José Luis Martínez", identificacion: "1030625689", casa: 260, residente: "Diana González", horaEntrada: "02:15 PM", horaSalida: "04:00 PM" },
+      { nombre: "Paula Gómez", identificacion: "1030625689", casa: 270, residente: "Sergio Rivera", horaEntrada: "03:00 PM", horaSalida: "05:00 PM" },
+      { nombre: "Diego Silva", identificacion: "1030625689", casa: 280, residente: "Esteban Soto", horaEntrada: "10:45 AM", horaSalida: "" },
+      { nombre: "Lucía Sánchez", identificacion: "1030625689", casa: 290, residente: "Marco Polo", horaEntrada: "09:15 AM", horaSalida: "11:30 AM" },
+      { nombre: "José Eduardo Díaz", identificacion: "1030625689", casa: 300, residente: "Clara Herrera", horaEntrada: "08:30 AM", horaSalida: "10:00 AM" },
+      { nombre: "Sofía Herrera", identificacion: "1030625689", casa: 310, residente: "Laura González", horaEntrada: "11:45 AM", horaSalida: "01:30 PM" },
+      { nombre: "Carlos Quintero", identificacion: "1030625689", casa: 320, residente: "Luis Castillo", horaEntrada: "07:45 AM", horaSalida: "" },
+      { nombre: "Beatriz Álvarez", identificacion: "1030625689", casa: 1, residente: "Sandra Ramírez", horaEntrada: "08:45 AM", horaSalida: "10:30 AM" },
+      { nombre: "Juan Sebastián Díaz", identificacion: "1030625689", casa: 2, residente: "Claudia Martínez", horaEntrada: "09:15 AM", horaSalida: "12:00 PM" },
+      { nombre: "Carlos Eduardo Morales", identificacion: "1030625689", casa: 3, residente: "Antonio Fuentes", horaEntrada: "07:30 AM", horaSalida: "09:15 AM" },
+      { nombre: "Verónica Pérez", identificacion: "1030625689", casa: 4, residente: "Luis Martínez", horaEntrada: "08:30 AM", horaSalida: "10:30 AM" },
+      { nombre: "Marcela González", identificacion: "1030625689", casa: 5, residente: "Ricardo Ruiz", horaEntrada: "09:00 AM", horaSalida: "11:00 AM" },
+      { nombre: "Andrés Felipe Castro", identificacion: "1030625689", casa: 6, residente: "Jessica López", horaEntrada: "11:30 AM", horaSalida: "01:00 PM" },
+      { nombre: "Laura María Gómez", identificacion: "1030625689", casa: 7, residente: "Diego Rodríguez", horaEntrada: "12:00 PM", horaSalida: "02:00 PM" },
+      { nombre: "Carlos Alberto Salazar", identificacion: "1030625689", casa: 8, residente: "Alejandra Díaz", horaEntrada: "10:15 AM", horaSalida: "" },
+      { nombre: "Sandra Ríos", identificacion: "1030625689", casa: 9, residente: "Juan Salazar", horaEntrada: "01:30 PM", horaSalida: "03:30 PM" },
+      { nombre: "Carlos Enrique Vargas", identificacion: "1030625689", casa: 10, residente: "Alejandra Morales", horaEntrada: "02:00 PM", horaSalida: "04:30 PM" },
+      { nombre: "Juan David Soto", identificacion: "1030625689", casa: 11, residente: "Sofía Reyes", horaEntrada: "10:45 AM", horaSalida: "12:00 PM" },
+      { nombre: "Carlos Guillermo Hernández", identificacion: "1030625689", casa: 12, residente: "Jessica Álvarez", horaEntrada: "03:00 PM", horaSalida: "05:00 PM" },
+      { nombre: "Mariana López", identificacion: "1030625689", casa: 13, residente: "Fernando Méndez", horaEntrada: "04:00 PM", horaSalida: "" },
+      { nombre: "Roberto Gutiérrez", identificacion: "1030625689", casa: 14, residente: "Carolina Torres", horaEntrada: "02:00 PM", horaSalida: "04:00 PM" },
+      { nombre: "Paula Álvarez", identificacion: "1030625689", casa: 15, residente: "Ricardo Fuentes", horaEntrada: "03:30 PM", horaSalida: "05:00 PM" },
+      { nombre: "Mauricio Jiménez", identificacion: "1030625689", casa: 16, residente: "Esteban López", horaEntrada: "11:00 AM", horaSalida: "01:00 PM" }
+    ];
+
+    let registrosPorPagina = 10;
+    let paginaActual = 1;
+
+    // Mostrar los registros
+    function mostrarRegistros() {
+      const inicio = (paginaActual - 1) * registrosPorPagina;
+      const fin = paginaActual * registrosPorPagina;
+      const registrosPagina = registros.slice(inicio, fin);
+      const tabla = document.getElementById('tablaRegistros');
+      tabla.innerHTML = '';
+
+      registrosPagina.forEach((registro, index) => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+                    <td>${inicio + index + 1}</td>
+                    <td>${registro.nombre}</td>
+                    <td>${registro.identificacion}</td>
+                    <td>${registro.casa}</td>
+                    <td>${registro.residente}</td>
+                    <td>${registro.horaEntrada}</td>
+                    <td>${registro.horaSalida || '-'}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editarRegistro(${inicio + index})" data-bs-toggle="modal" data-bs-target="#modalEditar">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${inicio + index})" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
+                    </td>
+                `;
+        tabla.appendChild(fila);
+      });
+
+      mostrarPaginacion();
+    }
+
+    // Mostrar paginación
+    function mostrarPaginacion() {
+      const totalPaginas = Math.ceil(registros.length / registrosPorPagina);
+      const paginacion = document.getElementById('pagination');
+      paginacion.innerHTML = '';
+
+      for (let i = 1; i <= totalPaginas; i++) {
+        const boton = document.createElement('li');
+        boton.classList.add('page-item');
+        boton.innerHTML = `<a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a>`;
+        paginacion.appendChild(boton);
+      }
+    }
+
+    // Cambiar de página
+    function cambiarPagina(pagina) {
+      paginaActual = pagina;
+      mostrarRegistros();
+    }
+
+    // Editar registro
+    function editarRegistro(index) {
+      const registro = registros[index];
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editNombre').value = registro.nombre;
+      document.getElementById('editIdentificacion').value = registro.identificacion;
+      document.getElementById('editCasa').value = registro.casa;
+      document.getElementById('editResidente').value = registro.residente;
+      document.getElementById('editHoraEntrada').value = registro.horaEntrada;
+      document.getElementById('editHoraSalida').value = registro.horaSalida;
+    }
+
+    document.getElementById('formEditar').onsubmit = function (event) {
+      event.preventDefault();
+      const index = document.getElementById('editIndex').value;
+      const registro = registros[index];
+      registro.nombre = document.getElementById('editNombre').value;
+      registro.identificacion = document.getElementById('editIdentificacion').value;
+      registro.casa = document.getElementById('editCasa').value;
+      registro.residente = document.getElementById('editResidente').value;
+      registro.horaEntrada = document.getElementById('editHoraEntrada').value;
+      registro.horaSalida = document.getElementById('editHoraSalida').value;
+      mostrarRegistros();
+      const modalEditar = new bootstrap.Modal(document.getElementById('modalEditar'));
+      modalEditar.hide();
+    };
+
+    // Eliminar registro
+    function eliminarRegistro(index) {
+      const registro = registros[index];
+      document.getElementById('confirmarEliminar').onclick = function () {
+        registros.splice(index, 1);
+        mostrarRegistros();
+        const modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
+        modalEliminar.hide();
+      };
+    }
+
+    // Agregar un nuevo registro
+    document.getElementById('formAgregar').onsubmit = function (event) {
+      event.preventDefault();
+      const nuevoRegistro = {
+        nombre: document.getElementById('nombre').value,
+        identificacion: document.getElementById('identificacion').value,
+        casa: document.getElementById('casa').value,
+        residente: document.getElementById('residente').value,
+        horaEntrada: document.getElementById('horaEntrada').value,
+        horaSalida: document.getElementById('horaSalida').value || ''
+      };
+      registros.push(nuevoRegistro);
+      mostrarRegistros();
+      const modalAgregar = new bootstrap.Modal(document.getElementById('modalAgregar'));
+      modalAgregar.hide();
+    };
+
+
+
+    // Formulario Agregar
+    document.getElementById('formAgregar').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const casa = parseInt(document.getElementById('casa').value);
+      const residente = document.getElementById('residente').value;
+      const horaEntrada = document.getElementById('horaEntrada').value;
+      const horaSalida = document.getElementById('horaSalida').value;
+
+      registros.push({ nombre, casa, residente, horaEntrada, horaSalida });
+      mostrarRegistros();
+      document.getElementById('formAgregar').reset();
+      bootstrap.Modal.getInstance(document.getElementById('modalAgregar')).hide();
+    });
+
+    // Editar
+    function editarRegistro(index) {
+      const registro = registros[index];
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editNombre').value = registro.nombre;
+      document.getElementById('editCasa').value = registro.casa;
+      document.getElementById('editResidente').value = registro.residente;
+      document.getElementById('editHoraEntrada').value = registro.horaEntrada;
+      document.getElementById('editHoraSalida').value = registro.horaSalida;
+    }
+
+    document.getElementById('formEditar').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const index = parseInt(document.getElementById('editIndex').value);
+      registros[index] = {
+        nombre: document.getElementById('editNombre').value,
+        casa: parseInt(document.getElementById('editCasa').value),
+        residente: document.getElementById('editResidente').value,
+        horaEntrada: document.getElementById('editHoraEntrada').value,
+        horaSalida: document.getElementById('editHoraSalida').value
+      };
+      mostrarRegistros();
+      bootstrap.Modal.getInstance(document.getElementById('modalEditar')).hide();
+    });
+
+    // Eliminar
+    let indexEliminar = null;
+
+    function eliminarRegistro(index) {
+      indexEliminar = index;
+    }
+
+    document.getElementById('confirmarEliminar').addEventListener('click', function () {
+      if (indexEliminar !== null) {
+        registros.splice(indexEliminar, 1);
+        indexEliminar = null;
+        mostrarRegistros();
+        bootstrap.Modal.getInstance(document.getElementById('modalEliminar')).hide();
+      }
+    });
+
+    // Inicializar vista
+    mostrarRegistros();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
