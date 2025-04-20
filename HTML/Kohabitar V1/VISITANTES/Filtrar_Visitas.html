@@ -1,71 +1,135 @@
-<!-- consultar_visitas.html -->
+<!-- filtrar_visitas.html -->
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <title>Consultar Visitas</title>
+    <title>Filtrar Visitas por Estado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/consultar_visitas.css">
+    <link rel="stylesheet" href="css/filtrar_visitas.css">
 </head>
 
 <body class="bg-light">
     <div class="container py-4">
-        <h2 class="mb-4">Historial de Visitas</h2>
-        <form class="row g-3 mb-4">
-            <div class="col-md-3">
-                <label class="form-label">Fecha</label>
-                <input type="date" class="form-control">
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Visitante</label>
-                <input type="text" class="form-control" placeholder="Nombre visitante">
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Propietario</label>
-                <input type="text" class="form-control" placeholder="Nombre propietario">
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Estado</label>
-                <select class="form-select">
-                    <option value="">Todos</option>
-                    <option>Activa</option>
-                    <option>Finalizada</option>
-                    <option>Pendiente</option>
+        <h2 class="mb-4">Filtrar Visitas por Estado</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Estado de la visita</label>
+                <select class="form-select" id="estadoFiltro">
+                    <option value="todos">Todos</option>
+                    <option value="activa">Activa</option>
+                    <option value="finalizada">Finalizada</option>
+                    <option value="pendiente">Pendiente</option>
                 </select>
             </div>
-        </form>
+        </div>
 
-        <table class="table table-striped table-hover mt-3">
-            <thead class="table-primary">
-                <tr>
-                    <th>Fecha</th>
-                    <th>Visitante</th>
-                    <th>Propietario</th>
-                    <th>Casa</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2025-04-19</td>
-                    <td>Camilo Pérez</td>
-                    <td>Ana Torres</td>
-                    <td>Casa 12</td>
-                    <td>Activa</td>
-                </tr>
-                <tr>
-                    <td>2025-04-18</td>
-                    <td>Luz Marina</td>
-                    <td>Jorge Díaz</td>
-                    <td>Casa 8</td>
-                    <td>Finalizada</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-success">
+                    <tr>
+                        <th>Visitante</th>
+                        <th>Propietario</th>
+                        <th>Casa</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaVisitas">
+                    <!-- Ejemplos con diferentes estados -->
+                    <tr data-estado="activa">
+                        <td>María López</td>
+                        <td>Pedro Gómez</td>
+                        <td>Casa 4</td>
+                        <td>2025-04-20</td>
+                        <td>Activa</td>
+                    </tr>
+                    <tr data-estado="finalizada">
+                        <td>Carlos Ruiz</td>
+                        <td>Sandra Méndez</td>
+                        <td>Casa 10</td>
+                        <td>2025-04-18</td>
+                        <td>Finalizada</td>
+                    </tr>
+                    <tr data-estado="pendiente">
+                        <td>Lucía Romero</td>
+                        <td>Diego Quintero</td>
+                        <td>Casa 7</td>
+                        <td>2025-04-19</td>
+                        <td>Pendiente</td>
+                    </tr>
+                    <tr data-estado="activa">
+                        <td>Juan Cárdenas</td>
+                        <td>Natalia Ramírez</td>
+                        <td>Casa 21</td>
+                        <td>2025-04-20</td>
+                        <td>Activa</td>
+                    </tr>
+                    <tr data-estado="finalizada">
+                        <td>Andrés Velásquez</td>
+                        <td>Lina Torres</td>
+                        <td>Casa 3</td>
+                        <td>2025-04-16</td>
+                        <td>Finalizada</td>
+                    </tr>
+                    <tr data-estado="pendiente">
+                        <td>Paola Nieto</td>
+                        <td>Andrés Bernal</td>
+                        <td>Casa 15</td>
+                        <td>2025-04-20</td>
+                        <td>Pendiente</td>
+                    </tr>
+                    <tr data-estado="activa">
+                        <td>Esteban Ríos</td>
+                        <td>Mónica Salazar</td>
+                        <td>Casa 6</td>
+                        <td>2025-04-19</td>
+                        <td>Activa</td>
+                    </tr>
+                    <tr data-estado="finalizada">
+                        <td>Angela Prieto</td>
+                        <td>Camilo Ortega</td>
+                        <td>Casa 13</td>
+                        <td>2025-04-17</td>
+                        <td>Finalizada</td>
+                    </tr>
+                    <tr data-estado="pendiente">
+                        <td>Juliana Paredes</td>
+                        <td>Rafael Vargas</td>
+                        <td>Casa 9</td>
+                        <td>2025-04-20</td>
+                        <td>Pendiente</td>
+                    </tr>
+                    <tr data-estado="activa">
+                        <td>Manuel Barrera</td>
+                        <td>Laura Suárez</td>
+                        <td>Casa 18</td>
+                        <td>2025-04-20</td>
+                        <td>Activa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <a href="index.html" class="btn btn-secondary mt-3">Volver al inicio</a>
     </div>
+
+    <script>
+        document.getElementById('estadoFiltro').addEventListener('change', function () {
+            const estadoSeleccionado = this.value;
+            const filas = document.querySelectorAll('#tablaVisitas tr');
+
+            filas.forEach(fila => {
+                const estadoFila = fila.getAttribute('data-estado');
+                if (estadoSeleccionado === 'todos' || estadoFila === estadoSeleccionado) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
