@@ -8,7 +8,7 @@
 </head>
 <body class="p-4 d-flex flex-column min-vh-100">
 
-  <div class="container flex-grow-1 py-4">
+  <div class="container-fluid flex-grow-1 py-4">
     <h2 class="mb-4">Gestión de Usuarios</h2>
 
     <!-- Botón: Crear usuario -->
@@ -21,16 +21,20 @@
       <thead class="table-light">
         <tr>
           <th>Nombre</th>
+          <th>Telefono</th>
           <th>Email</th>
           <th>Rol</th>
+          <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Juan Pérez</td>
+          <td>777130303</td>
           <td>juan@mail.com</td>
           <td>Administrador</td>
+          <td>Activo</td>
           <td>
             <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
               <i class="fa fa-edit"></i>
@@ -40,7 +44,36 @@
             </button>
           </td>
         </tr>
-        <!-- Más usuarios aquí -->
+        <tr>
+          <td>Andres Parra</td>
+          <td>78451296</td>
+          <td>Andres@mail.com</td>
+          <td>Residente</td>
+          <td>Activo</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuarioModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Maria Suarez</td>
+          <td>3126853</td>
+          <td>Maria@mail.com</td>
+          <td>Propietario</td>
+          <td>Activo</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarUsuarioModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarUsuarioModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -60,8 +93,20 @@
               <input type="text" class="form-control" required>
             </div>
             <div class="mb-3">
+              <label>Telefono</label>
+              <input type="number" class="form-control" required>
+            </div>
+            <div class="mb-3">
               <label>Email</label>
               <input type="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Estado</label>
+              <select class="form-select" required>
+                <option value="">Seleccione</option>
+                <option>Activo</option>
+                <option>Inactivo</option>
+              </select>
             </div>
             <div class="mb-3">
               <label>Rol</label>
@@ -69,6 +114,7 @@
                 <option value="">Seleccione</option>
                 <option>Administrador</option>
                 <option>Residente</option>
+                <option>Propietario</option>
               </select>
             </div>
           </div>
@@ -93,17 +139,30 @@
           <div class="modal-body">
             <div class="mb-3">
               <label>Nombre</label>
-              <input type="text" class="form-control" value="Juan Pérez" required>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Telefono</label>
+              <input type="number" class="form-control"  required>
             </div>
             <div class="mb-3">
               <label>Email</label>
-              <input type="email" class="form-control" value="juan@mail.com" required>
+              <input type="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Estado</label>
+              <select class="form-select" required>
+                <option value="">Seleccione</option>
+                <option>Activo</option>
+                <option>Inactivo</option>
+              </select>
             </div>
             <div class="mb-3">
               <label>Rol</label>
               <select class="form-select" required>
                 <option>Administrador</option>
                 <option>Residente</option>
+                <option>Propietario</option>
               </select>
             </div>
           </div>

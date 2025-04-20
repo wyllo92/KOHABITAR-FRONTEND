@@ -10,11 +10,11 @@
 
 <body class="p-4 bg-light">
 
-  <div class="container">
+  <div class="container-fluid">
     <h2 class="mb-4">Gestión de Visitantes</h2>
 
     <!-- Botón: Crear visitante -->
-    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#crearVisitanteModal">
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearVisitanteModal">
       <i class="fa fa-user-plus"></i> Nuevo Registro
     </button>
 
@@ -22,21 +22,25 @@
     <table class="table table-bordered table-hover bg-white shadow-sm">
       <thead class="table-light">
         <tr>
-          <th>Nombre</th>
-          <th>Identificación</th>
-          <th>Vehículo</th>
-          <th>Placa</th>
-          <th>Residente</th>
-          <th>Acciones</th>
+          <th title="Nombre completo del visitante">Nombre</th>
+          <th title="Numero de identificacion del visitante">identificacion</th>
+          <th title="Fecha y hora de entrada del visitante">entrada</th>
+          <th title="Fecha y hora de salida del visitante">salida</th>
+          <th title="Id de la propiedad a la que ingresa">propiedad</th>
+          <th title="¿tiene vehiculo?">Vehículo</th>
+          <th title="Numero de la placa del vehiculo">Placa</th>
+          <th title="Accciones disponibles">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Carlos Gómez</td>
           <td>12345678</td>
-          <td>Sí</td>
-          <td>ABC123</td>
-          <td>Ana Ruiz</td>
+          <td>15/01/2025 10:30</td>
+          <td>15/01/2025 16:45</td>
+          <td>101</td>
+          <td>no</td>
+          <td>N/A</td>
           <td>
             <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarVisitanteModal">
               <i class="fa fa-edit"></i>
@@ -51,7 +55,8 @@
   </div>
 
   <!-- Modal: Crear Visitante -->
-  <div class="modal fade" id="crearVisitanteModal" tabindex="-1" aria-labelledby="crearVisitanteLabel" aria-hidden="true">
+  <div class="modal fade" id="crearVisitanteModal" tabindex="-1" aria-labelledby="crearVisitanteLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>
@@ -65,29 +70,32 @@
               <input type="text" class="form-control" required>
             </div>
             <div class="mb-3">
-              <label>Identificación</label>
+              <label>Numero de identificación</label>
+              <input type="number" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Fecha y hora de entrada</label>
+              <input type="date" class="form-control">
+            </div>
+              <div class="mb-3">
+                <label>Fecha y hora de salida</label>
+                <input type="date" class="form-control">
+              </div>
+            <div class="mb-3">
+              <label>Id del Propietario/Residente a visitar</label>
               <input type="text" class="form-control" required>
             </div>
             <div class="mb-3">
-              <label>¿Trae vehículo?</label>
-              <select class="form-select" onchange="document.getElementById('camposVehiculoCrear').style.display = this.value === 'sí' ? 'block' : 'none'">
-                <option value="no">No</option>
-                <option value="sí">Sí</option>
+              <label>Tiene Vehiculo</label>
+              <select class="form-select" required>
+                <option>Seleccione</option>
+                <option>Si</option>
+                <option>No</option>
               </select>
             </div>
-            <div id="camposVehiculoCrear" style="display: none;">
-              <div class="mb-3">
-                <label>Placa del vehículo</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="mb-3">
-                <label>Modelo</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
             <div class="mb-3">
-              <label>Propietario/Residente a visitar</label>
-              <input type="text" class="form-control" required>
+              <label>Placa del vehiculo</label>
+              <input type="text" class="form-control">
             </div>
           </div>
           <div class="modal-footer">
@@ -100,7 +108,8 @@
   </div>
 
   <!-- Modal: Editar Visitante -->
-  <div class="modal fade" id="editarVisitanteModal" tabindex="-1" aria-labelledby="editarVisitanteLabel" aria-hidden="true">
+  <div class="modal fade" id="editarVisitanteModal" tabindex="-1" aria-labelledby="editarVisitanteLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>
@@ -114,16 +123,32 @@
               <input type="text" class="form-control" value="Carlos Gómez" required>
             </div>
             <div class="mb-3">
-              <label>Identificación</label>
+              <label>Numero de identificación</label>
               <input type="text" class="form-control" value="12345678" required>
             </div>
             <div class="mb-3">
-              <label>Placa</label>
-              <input type="text" class="form-control" value="ABC123">
+              <label>Fecha y hora de entrada</label>
+              <input type="date" class="form-control" value="ABC123">
             </div>
             <div class="mb-3">
-              <label>Residente a visitar</label>
-              <input type="text" class="form-control" value="Ana Ruiz" required>
+              <label>Fecha y hora de salida</label>
+              <input type="date" class="form-control" value="Ana Ruiz" required>
+            </div>
+            <div class="mb-3">
+              <label>Id del Propietario/Residente a visitar</label>
+              <input type="number" class="form-control" value="Ana Ruiz" required>
+            </div>
+            <div class="mb-3">
+              <label>Tiene Vehiculo</label>
+              <select class="form-select" required>
+                <option>Seleccione</option>
+                <option>Si</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Placa del vehiculo</label>
+              <input type="text" class="form-control" value="Ana Ruiz">
             </div>
           </div>
           <div class="modal-footer">
@@ -136,7 +161,8 @@
   </div>
 
   <!-- Modal: Eliminar Visitante -->
-  <div class="modal fade" id="eliminarVisitanteModal" tabindex="-1" aria-labelledby="eliminarVisitanteLabel" aria-hidden="true">
+  <div class="modal fade" id="eliminarVisitanteModal" tabindex="-1" aria-labelledby="eliminarVisitanteLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <form>
@@ -158,7 +184,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

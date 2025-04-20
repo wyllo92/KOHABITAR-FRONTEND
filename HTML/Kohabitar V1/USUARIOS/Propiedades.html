@@ -8,7 +8,7 @@
 </head>
 <body class="p-4 bg-light">
 
-  <div class="container">
+  <div class="container-fluid">
     <h2 class="mb-4">Gestión de Propiedades</h2>
 
     <!-- Botón: Crear propiedad -->
@@ -22,17 +22,19 @@
         <tr>
           <th>ID</th>
           <th>Nombre</th>
+          <th>Estado</th>
+          <th>Id del residente</th>
           <th>Tipo</th>
-          <th>Ubicación</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>001</td>
-          <td>Torre A - Apto 101</td>
-          <td>Apartamento</td>
-          <td>Piso 1</td>
+          <td>seccion A - casa 101</td>
+          <td>Activo</td>
+          <td>03</td>
+          <td>Casa</td>
           <td>
             <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
               <i class="fa fa-edit"></i>
@@ -42,7 +44,36 @@
             </button>
           </td>
         </tr>
-        <!-- Más propiedades aquí -->
+        <tr>
+          <td>002</td>
+          <td>seccion A - casa 102</td>
+          <td>Activo</td>
+          <td>04</td>
+          <td>Local</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>seccion A - casa 103</td>
+          <td>Activo</td>
+          <td>05</td>
+          <td>Casa</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -62,17 +93,24 @@
               <input type="text" class="form-control" required>
             </div>
             <div class="mb-3">
-              <label>Tipo</label>
+              <label>Estado</label>
               <select class="form-select" required>
                 <option value="">Seleccione</option>
-                <option>Apartamento</option>
-                <option>Casa</option>
-                <option>Local</option>
+                <option>Activo</option>
+                <option>Inactivo</option>
               </select>
             </div>
             <div class="mb-3">
-              <label>Ubicación</label>
-              <input type="text" class="form-control" required>
+              <label>Id del residente</label>
+              <input type="number" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Tipo</label>
+              <select class="form-select" required>
+                <option value="">Seleccione</option>
+                <option>Casa</option>
+                <option>Local</option>
+              </select>
             </div>
           </div>
           <div class="modal-footer">
@@ -96,19 +134,27 @@
           <div class="modal-body">
             <div class="mb-3">
               <label>Nombre</label>
-              <input type="text" class="form-control" value="Torre A - Apto 101" required>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Estado</label>
+              <select class="form-select" required>
+                <option selected>Seleccione</option>
+                <option>Activo</option>
+                <option>Inactivo</option>
+              </select>
             </div>
             <div class="mb-3">
               <label>Tipo</label>
               <select class="form-select" required>
-                <option selected>Apartamento</option>
+                <option selected>Seleccione</option>
                 <option>Casa</option>
                 <option>Local</option>
               </select>
             </div>
             <div class="mb-3">
-              <label>Ubicación</label>
-              <input type="text" class="form-control" value="Piso 1" required>
+              <label>Id del residente</label>
+              <input type="number" class="form-control" required>
             </div>
           </div>
           <div class="modal-footer">
