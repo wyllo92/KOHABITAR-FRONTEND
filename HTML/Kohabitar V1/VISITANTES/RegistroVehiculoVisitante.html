@@ -112,14 +112,14 @@
     let paginaActual = 1;
 
     const vehiculos = Array.from({ length: 30 }, (_, i) => ({
-      id: `000-${(i + 1).toString().padStart(2, '0')}`,
+      id: `0${(i + 1).toString().padStart(2, '0')}`,
       visitante: nombres[i],
       placa: `XYZ-${(100 + i)}`,
       modelo: modelos[i % modelos.length],
       color: colores[i % colores.length],
       hora: `${8 + Math.floor(i / 2)}:${(i % 2) * 30 === 0 ? '00' : '30'}`,
       unidad: `Casa ${(i % 20) + 1}`,
-      espacio: `E${(i % 10) + 1}`,
+      espacio: `P00${(i % 10) + 1}`,
       estado: estados[i % 2]
     }));
 

@@ -13,10 +13,25 @@
   <div class="container">
     <h2 class="mb-4">Gestión de Propiedades</h2>
 
-    <!-- Botón: Crear propiedad -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearPropiedadModal">
-      <i class="fa fa-plus"></i> Nueva Propiedad
-    </button>
+    <!-- Contenedor para los botones alineados a los extremos -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <!-- Botón: Buscar (alineado a la izquierda) -->
+      <div class="d-flex align-items-start" style="max-width: 200px;">
+        <div class="d-flex w-100">
+          <input class="form-control py-2 rounded-start-pill" type="search" placeholder="Buscar..." id="search-input">
+          <button class="btn btn-light py-2 rounded-end-pill border" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Botón: Crear propiedad -->
+      <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearPropiedadModal">
+        <i class="fa fa-plus"></i> Nueva Propiedad
+      </button>
+    </div>
+
+
 
     <!-- Tabla de propiedades -->
     <table class="table table-bordered table-hover bg-white shadow-sm">

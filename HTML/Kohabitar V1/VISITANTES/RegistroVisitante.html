@@ -1,202 +1,212 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Vehículos de Visitantes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="visitante1.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Vehículos de Visitantes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="visitante1.css">
 </head>
+
 <body>
-    <div class="container mt-4">
-        <h2 class="text-center">Gestión de Visitantes</h2>
-        
-        <!-- Botón para agregar nuevo registro -->
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar Visitante</button>
-        </div>
+  <div class="container mt-4">
+    <h2 class="text-center">Gestión de Visitantes</h2>
 
-        <!-- Tabla de Vehículos de Visitantes -->
-        <table class="table table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Nombre Visitante</th>
-                    <th>Casa</th>
-                    <th>Residente a Visitar</th>
-                    <th>Hora Entrada</th>
-                    <th>Hora Salida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tablaRegistros">
-                <!-- Registros serán insertados por JavaScript -->
-            </tbody>
-        </table>
-
-        <!-- Paginación -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center" id="pagination">
-                <!-- Paginación se generará por JavaScript -->
-            </ul>
-        </nav>
-
-        <!-- Modal Agregar -->
-        <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalAgregarLabel">Agregar Visitante</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formAgregar">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="casa" class="form-label">Casa</label>
-                                <input type="number" class="form-control" id="casa" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="residente" class="form-label">Residente a Visitar</label>
-                                <input type="text" class="form-control" id="residente" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="horaEntrada" class="form-label">Hora Entrada</label>
-                                <input type="time" class="form-control" id="horaEntrada" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="horaSalida" class="form-label">Hora Salida</label>
-                                <input type="time" class="form-control" id="horaSalida">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Agregar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Editar -->
-        <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditarLabel">Editar Visitante</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formEditar">
-                            <input type="hidden" id="editIndex">
-                            <div class="mb-3">
-                                <label for="editNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="editNombre" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editCasa" class="form-label">Casa</label>
-                                <input type="number" class="form-control" id="editCasa" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editResidente" class="form-label">Residente a Visitar</label>
-                                <input type="text" class="form-control" id="editResidente" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editHoraEntrada" class="form-label">Hora Entrada</label>
-                                <input type="time" class="form-control" id="editHoraEntrada" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editHoraSalida" class="form-label">Hora Salida</label>
-                                <input type="time" class="form-control" id="editHoraSalida">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Eliminar -->
-        <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalEliminarLabel">Eliminar Visitante</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>¿Estás seguro de que deseas eliminar este registro?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Contenedor del buscador -->
+    <div class="search-container position-absolute">
+      <input class="form-control py-2 rounded-pill pr-5" type="search" placeholder="Buscar..." id="search-input">
+      <button class="btn position-absolute top-50 end-0 translate-middle-y me-2" type="button">
+        <i class="fas fa-search"></i>
+      </button>
     </div>
 
-    <script>
-        const registros = [
-            { nombre: "Juan Camilo Rodríguez", casa: 12, residente: "Carlos Patiño", horaEntrada: "10:15 AM", horaSalida: "12:00 PM" },
-            { nombre: "María Fernanda Pérez", casa: 56, residente: "Lucía Herrera", horaEntrada: "11:30 AM", horaSalida: "01:00 PM" },
-            { nombre: "Andrés Felipe Gómez", casa: 78, residente: "Miguel Salazar", horaEntrada: "12:00 PM", horaSalida: "02:00 PM" },
-            { nombre: "Valentina Ospina", casa: 101, residente: "Natalia Ruiz", horaEntrada: "01:10 PM", horaSalida: "" },
-            { nombre: "Laura González", casa: 45, residente: "Paola Mendoza", horaEntrada: "02:05 PM", horaSalida: "04:00 PM" },
-            { nombre: "Santiago López", casa: 90, residente: "Cristian León", horaEntrada: "02:40 PM", horaSalida: "03:30 PM" },
-            { nombre: "Camila Ríos", casa: 112, residente: "Luis Forero", horaEntrada: "03:00 PM", horaSalida: "" },
-            { nombre: "Carlos Andrés Méndez", casa: 130, residente: "Sandra Díaz", horaEntrada: "03:30 PM", horaSalida: "05:00 PM" },
-            { nombre: "Daniela Vargas", casa: 143, residente: "Elena Bustos", horaEntrada: "04:00 PM", horaSalida: "" },
-            { nombre: "Julián Castro", casa: 153, residente: "Tatiana Rojas", horaEntrada: "04:30 PM", horaSalida: "06:00 PM" },
-            { nombre: "Isabella Torres", casa: 160, residente: "Ana González", horaEntrada: "10:00 AM", horaSalida: "12:30 PM" },
-            { nombre: "Felipe Rodríguez", casa: 170, residente: "Sofía García", horaEntrada: "09:00 AM", horaSalida: "" },
-            { nombre: "Victoria Ramírez", casa: 180, residente: "Mauricio López", horaEntrada: "12:30 PM", horaSalida: "02:15 PM" },
-            { nombre: "Miguel Ángel Gómez", casa: 190, residente: "Pablo Sánchez", horaEntrada: "08:00 AM", horaSalida: "10:00 AM" },
-            { nombre: "Juanita Vargas", casa: 200, residente: "Juan Peña", horaEntrada: "11:00 AM", horaSalida: "" },
-            { nombre: "Carlos Alberto Martínez", casa: 210, residente: "Rosa Morales", horaEntrada: "10:30 AM", horaSalida: "12:45 PM" },
-            { nombre: "Emilia Castro", casa: 220, residente: "Guillermo Martínez", horaEntrada: "02:00 PM", horaSalida: "03:30 PM" },
-            { nombre: "Camilo Hernández", casa: 230, residente: "Lina Ramos", horaEntrada: "04:30 PM", horaSalida: "06:00 PM" },
-            { nombre: "Martín Pérez", casa: 240, residente: "Marta Ríos", horaEntrada: "09:30 AM", horaSalida: "11:00 AM" },
-            { nombre: "Manuela Díaz", casa: 250, residente: "Carlos Torres", horaEntrada: "01:00 PM", horaSalida: "03:00 PM" },
-            { nombre: "José Luis Martínez", casa: 260, residente: "Diana González", horaEntrada: "02:15 PM", horaSalida: "04:00 PM" },
-            { nombre: "Paula Gómez", casa: 270, residente: "Sergio Rivera", horaEntrada: "03:00 PM", horaSalida: "05:00 PM" },
-            { nombre: "Diego Silva", casa: 280, residente: "Esteban Soto", horaEntrada: "10:45 AM", horaSalida: "" },
-            { nombre: "Lucía Sánchez", casa: 290, residente: "Marco Polo", horaEntrada: "09:15 AM", horaSalida: "11:30 AM" },
-            { nombre: "José Eduardo Díaz", casa: 300, residente: "Clara Herrera", horaEntrada: "08:30 AM", horaSalida: "10:00 AM" },
-            { nombre: "Sofía Herrera", casa: 310, residente: "Laura González", horaEntrada: "11:45 AM", horaSalida: "01:30 PM" },
-            { nombre: "Carlos Quintero", casa: 320, residente: "Luis Castillo", horaEntrada: "07:45 AM", horaSalida: "" },
-            { nombre: "Beatriz Álvarez", casa: 1, residente: "Sandra Ramírez", horaEntrada: "08:45 AM", horaSalida: "10:30 AM" },
-            { nombre: "Juan Sebastián Díaz", casa: 2, residente: "Claudia Martínez", horaEntrada: "09:15 AM", horaSalida: "12:00 PM" },
-            { nombre: "Carlos Eduardo Morales", casa: 3, residente: "Antonio Fuentes", horaEntrada: "07:30 AM", horaSalida: "09:15 AM" },
-            { nombre: "Verónica Pérez", casa: 4, residente: "Luis Martínez", horaEntrada: "08:30 AM", horaSalida: "10:30 AM" },
-            { nombre: "Marcela González", casa: 5, residente: "Ricardo Ruiz", horaEntrada: "09:00 AM", horaSalida: "11:00 AM" },
-            { nombre: "Andrés Felipe Castro", casa: 6, residente: "Jessica López", horaEntrada: "11:30 AM", horaSalida: "01:00 PM" },
-            { nombre: "Laura María Gómez", casa: 7, residente: "Diego Rodríguez", horaEntrada: "12:00 PM", horaSalida: "02:00 PM" },
-            { nombre: "Carlos Alberto Salazar", casa: 8, residente: "Alejandra Díaz", horaEntrada: "10:15 AM", horaSalida: "" },
-            { nombre: "Sandra Ríos", casa: 9, residente: "Juan Salazar", horaEntrada: "01:30 PM", horaSalida: "03:30 PM" },
-            { nombre: "Carlos Enrique Vargas", casa: 10, residente: "Alejandra Morales", horaEntrada: "02:00 PM", horaSalida: "04:30 PM" },
-            { nombre: "Juan David Soto", casa: 11, residente: "Sofía Reyes", horaEntrada: "10:45 AM", horaSalida: "12:00 PM" },
-            { nombre: "Carlos Guillermo Hernández", casa: 12, residente: "Jessica Álvarez", horaEntrada: "03:00 PM", horaSalida: "05:00 PM" },
-            { nombre: "Mariana López", casa: 13, residente: "Fernando Méndez", horaEntrada: "04:00 PM", horaSalida: "" },
-            { nombre: "Roberto Gutiérrez", casa: 14, residente: "Carolina Torres", horaEntrada: "02:00 PM", horaSalida: "04:00 PM" },
-            { nombre: "Paula Álvarez", casa: 15, residente: "Ricardo Fuentes", horaEntrada: "03:30 PM", horaSalida: "05:00 PM" },
-            { nombre: "Mauricio Jiménez", casa: 16, residente: "Esteban López", horaEntrada: "11:00 AM", horaSalida: "01:00 PM" }
-        ];
+    <!-- Botón para agregar nuevo registro -->
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar Visitante</button>
+    </div>
 
-        let registrosPorPagina = 10;
-        let paginaActual = 1;
+    <!-- Tabla de Vehículos de Visitantes -->
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Nombre Visitante</th>
+          <th>Casa</th>
+          <th>Residente a Visitar</th>
+          <th>Hora Entrada</th>
+          <th>Hora Salida</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaRegistros">
+        <!-- Registros serán insertados por JavaScript -->
+      </tbody>
+    </table>
 
-        // Mostrar los registros
-        function mostrarRegistros() {
-            const inicio = (paginaActual - 1) * registrosPorPagina;
-            const fin = paginaActual * registrosPorPagina;
-            const registrosPagina = registros.slice(inicio, fin);
-            const tabla = document.getElementById('tablaRegistros');
-            tabla.innerHTML = '';
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center" id="pagination">
+        <!-- Paginación se generará por JavaScript -->
+      </ul>
+    </nav>
 
-            registrosPagina.forEach((registro, index) => {
-                const fila = document.createElement('tr');
-                fila.innerHTML = `
+    <!-- Modal Agregar -->
+    <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalAgregarLabel">Agregar Visitante</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formAgregar">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="casa" class="form-label">Casa</label>
+                <input type="number" class="form-control" id="casa" required>
+              </div>
+              <div class="mb-3">
+                <label for="residente" class="form-label">Residente a Visitar</label>
+                <input type="text" class="form-control" id="residente" required>
+              </div>
+              <div class="mb-3">
+                <label for="horaEntrada" class="form-label">Hora Entrada</label>
+                <input type="time" class="form-control" id="horaEntrada" required>
+              </div>
+              <div class="mb-3">
+                <label for="horaSalida" class="form-label">Hora Salida</label>
+                <input type="time" class="form-control" id="horaSalida">
+              </div>
+              <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEditarLabel">Editar Visitante</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEditar">
+              <input type="hidden" id="editIndex">
+              <div class="mb-3">
+                <label for="editNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="editNombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="editCasa" class="form-label">Casa</label>
+                <input type="number" class="form-control" id="editCasa" required>
+              </div>
+              <div class="mb-3">
+                <label for="editResidente" class="form-label">Residente a Visitar</label>
+                <input type="text" class="form-control" id="editResidente" required>
+              </div>
+              <div class="mb-3">
+                <label for="editHoraEntrada" class="form-label">Hora Entrada</label>
+                <input type="time" class="form-control" id="editHoraEntrada" required>
+              </div>
+              <div class="mb-3">
+                <label for="editHoraSalida" class="form-label">Hora Salida</label>
+                <input type="time" class="form-control" id="editHoraSalida">
+              </div>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEliminarLabel">Eliminar Visitante</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Estás seguro de que deseas eliminar este registro?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const registros = [
+      { nombre: "Juan Camilo Rodríguez", casa: 12, residente: "Carlos Patiño", horaEntrada: "10:15 AM", horaSalida: "12:00 PM" },
+      { nombre: "María Fernanda Pérez", casa: 56, residente: "Lucía Herrera", horaEntrada: "11:30 AM", horaSalida: "01:00 PM" },
+      { nombre: "Andrés Felipe Gómez", casa: 78, residente: "Miguel Salazar", horaEntrada: "12:00 PM", horaSalida: "02:00 PM" },
+      { nombre: "Valentina Ospina", casa: 101, residente: "Natalia Ruiz", horaEntrada: "01:10 PM", horaSalida: "" },
+      { nombre: "Laura González", casa: 45, residente: "Paola Mendoza", horaEntrada: "02:05 PM", horaSalida: "04:00 PM" },
+      { nombre: "Santiago López", casa: 90, residente: "Cristian León", horaEntrada: "02:40 PM", horaSalida: "03:30 PM" },
+      { nombre: "Camila Ríos", casa: 112, residente: "Luis Forero", horaEntrada: "03:00 PM", horaSalida: "" },
+      { nombre: "Carlos Andrés Méndez", casa: 130, residente: "Sandra Díaz", horaEntrada: "03:30 PM", horaSalida: "05:00 PM" },
+      { nombre: "Daniela Vargas", casa: 143, residente: "Elena Bustos", horaEntrada: "04:00 PM", horaSalida: "" },
+      { nombre: "Julián Castro", casa: 153, residente: "Tatiana Rojas", horaEntrada: "04:30 PM", horaSalida: "06:00 PM" },
+      { nombre: "Isabella Torres", casa: 160, residente: "Ana González", horaEntrada: "10:00 AM", horaSalida: "12:30 PM" },
+      { nombre: "Felipe Rodríguez", casa: 170, residente: "Sofía García", horaEntrada: "09:00 AM", horaSalida: "" },
+      { nombre: "Victoria Ramírez", casa: 180, residente: "Mauricio López", horaEntrada: "12:30 PM", horaSalida: "02:15 PM" },
+      { nombre: "Miguel Ángel Gómez", casa: 190, residente: "Pablo Sánchez", horaEntrada: "08:00 AM", horaSalida: "10:00 AM" },
+      { nombre: "Juanita Vargas", casa: 200, residente: "Juan Peña", horaEntrada: "11:00 AM", horaSalida: "" },
+      { nombre: "Carlos Alberto Martínez", casa: 210, residente: "Rosa Morales", horaEntrada: "10:30 AM", horaSalida: "12:45 PM" },
+      { nombre: "Emilia Castro", casa: 220, residente: "Guillermo Martínez", horaEntrada: "02:00 PM", horaSalida: "03:30 PM" },
+      { nombre: "Camilo Hernández", casa: 230, residente: "Lina Ramos", horaEntrada: "04:30 PM", horaSalida: "06:00 PM" },
+      { nombre: "Martín Pérez", casa: 240, residente: "Marta Ríos", horaEntrada: "09:30 AM", horaSalida: "11:00 AM" },
+      { nombre: "Manuela Díaz", casa: 250, residente: "Carlos Torres", horaEntrada: "01:00 PM", horaSalida: "03:00 PM" },
+      { nombre: "José Luis Martínez", casa: 260, residente: "Diana González", horaEntrada: "02:15 PM", horaSalida: "04:00 PM" },
+      { nombre: "Paula Gómez", casa: 270, residente: "Sergio Rivera", horaEntrada: "03:00 PM", horaSalida: "05:00 PM" },
+      { nombre: "Diego Silva", casa: 280, residente: "Esteban Soto", horaEntrada: "10:45 AM", horaSalida: "" },
+      { nombre: "Lucía Sánchez", casa: 290, residente: "Marco Polo", horaEntrada: "09:15 AM", horaSalida: "11:30 AM" },
+      { nombre: "José Eduardo Díaz", casa: 300, residente: "Clara Herrera", horaEntrada: "08:30 AM", horaSalida: "10:00 AM" },
+      { nombre: "Sofía Herrera", casa: 310, residente: "Laura González", horaEntrada: "11:45 AM", horaSalida: "01:30 PM" },
+      { nombre: "Carlos Quintero", casa: 320, residente: "Luis Castillo", horaEntrada: "07:45 AM", horaSalida: "" },
+      { nombre: "Beatriz Álvarez", casa: 1, residente: "Sandra Ramírez", horaEntrada: "08:45 AM", horaSalida: "10:30 AM" },
+      { nombre: "Juan Sebastián Díaz", casa: 2, residente: "Claudia Martínez", horaEntrada: "09:15 AM", horaSalida: "12:00 PM" },
+      { nombre: "Carlos Eduardo Morales", casa: 3, residente: "Antonio Fuentes", horaEntrada: "07:30 AM", horaSalida: "09:15 AM" },
+      { nombre: "Verónica Pérez", casa: 4, residente: "Luis Martínez", horaEntrada: "08:30 AM", horaSalida: "10:30 AM" },
+      { nombre: "Marcela González", casa: 5, residente: "Ricardo Ruiz", horaEntrada: "09:00 AM", horaSalida: "11:00 AM" },
+      { nombre: "Andrés Felipe Castro", casa: 6, residente: "Jessica López", horaEntrada: "11:30 AM", horaSalida: "01:00 PM" },
+      { nombre: "Laura María Gómez", casa: 7, residente: "Diego Rodríguez", horaEntrada: "12:00 PM", horaSalida: "02:00 PM" },
+      { nombre: "Carlos Alberto Salazar", casa: 8, residente: "Alejandra Díaz", horaEntrada: "10:15 AM", horaSalida: "" },
+      { nombre: "Sandra Ríos", casa: 9, residente: "Juan Salazar", horaEntrada: "01:30 PM", horaSalida: "03:30 PM" },
+      { nombre: "Carlos Enrique Vargas", casa: 10, residente: "Alejandra Morales", horaEntrada: "02:00 PM", horaSalida: "04:30 PM" },
+      { nombre: "Juan David Soto", casa: 11, residente: "Sofía Reyes", horaEntrada: "10:45 AM", horaSalida: "12:00 PM" },
+      { nombre: "Carlos Guillermo Hernández", casa: 12, residente: "Jessica Álvarez", horaEntrada: "03:00 PM", horaSalida: "05:00 PM" },
+      { nombre: "Mariana López", casa: 13, residente: "Fernando Méndez", horaEntrada: "04:00 PM", horaSalida: "" },
+      { nombre: "Roberto Gutiérrez", casa: 14, residente: "Carolina Torres", horaEntrada: "02:00 PM", horaSalida: "04:00 PM" },
+      { nombre: "Paula Álvarez", casa: 15, residente: "Ricardo Fuentes", horaEntrada: "03:30 PM", horaSalida: "05:00 PM" },
+      { nombre: "Mauricio Jiménez", casa: 16, residente: "Esteban López", horaEntrada: "11:00 AM", horaSalida: "01:00 PM" }
+    ];
+
+    let registrosPorPagina = 10;
+    let paginaActual = 1;
+
+    // Mostrar los registros
+    function mostrarRegistros() {
+      const inicio = (paginaActual - 1) * registrosPorPagina;
+      const fin = paginaActual * registrosPorPagina;
+      const registrosPagina = registros.slice(inicio, fin);
+      const tabla = document.getElementById('tablaRegistros');
+      tabla.innerHTML = '';
+
+      registrosPagina.forEach((registro, index) => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
                     <td>${inicio + index + 1}</td>
                     <td>${registro.nombre}</td>
                     <td>${registro.casa}</td>
@@ -208,87 +218,88 @@
                         <button class="btn btn-danger btn-sm" onclick="eliminarRegistro(${inicio + index})" data-bs-toggle="modal" data-bs-target="#modalEliminar">Eliminar</button>
                     </td>
                 `;
-                tabla.appendChild(fila);
-            });
+        tabla.appendChild(fila);
+      });
 
-            mostrarPaginacion();
-        }
+      mostrarPaginacion();
+    }
 
-        // Mostrar paginación
-        function mostrarPaginacion() {
-            const totalPaginas = Math.ceil(registros.length / registrosPorPagina);
-            const paginacion = document.getElementById('pagination');
-            paginacion.innerHTML = '';
+    // Mostrar paginación
+    function mostrarPaginacion() {
+      const totalPaginas = Math.ceil(registros.length / registrosPorPagina);
+      const paginacion = document.getElementById('pagination');
+      paginacion.innerHTML = '';
 
-            for (let i = 1; i <= totalPaginas; i++) {
-                const boton = document.createElement('li');
-                boton.classList.add('page-item');
-                boton.innerHTML = `<a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a>`;
-                paginacion.appendChild(boton);
-            }
-        }
+      for (let i = 1; i <= totalPaginas; i++) {
+        const boton = document.createElement('li');
+        boton.classList.add('page-item');
+        boton.innerHTML = `<a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a>`;
+        paginacion.appendChild(boton);
+      }
+    }
 
-        // Cambiar de página
-        function cambiarPagina(pagina) {
-            paginaActual = pagina;
-            mostrarRegistros();
-        }
+    // Cambiar de página
+    function cambiarPagina(pagina) {
+      paginaActual = pagina;
+      mostrarRegistros();
+    }
 
-        // Editar registro
-        function editarRegistro(index) {
-            const registro = registros[index];
-            document.getElementById('editIndex').value = index;
-            document.getElementById('editNombre').value = registro.nombre;
-            document.getElementById('editCasa').value = registro.casa;
-            document.getElementById('editResidente').value = registro.residente;
-            document.getElementById('editHoraEntrada').value = registro.horaEntrada;
-            document.getElementById('editHoraSalida').value = registro.horaSalida;
-        }
+    // Editar registro
+    function editarRegistro(index) {
+      const registro = registros[index];
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editNombre').value = registro.nombre;
+      document.getElementById('editCasa').value = registro.casa;
+      document.getElementById('editResidente').value = registro.residente;
+      document.getElementById('editHoraEntrada').value = registro.horaEntrada;
+      document.getElementById('editHoraSalida').value = registro.horaSalida;
+    }
 
-        document.getElementById('formEditar').onsubmit = function(event) {
-            event.preventDefault();
-            const index = document.getElementById('editIndex').value;
-            const registro = registros[index];
-            registro.nombre = document.getElementById('editNombre').value;
-            registro.casa = document.getElementById('editCasa').value;
-            registro.residente = document.getElementById('editResidente').value;
-            registro.horaEntrada = document.getElementById('editHoraEntrada').value;
-            registro.horaSalida = document.getElementById('editHoraSalida').value;
-            mostrarRegistros();
-            const modalEditar = new bootstrap.Modal(document.getElementById('modalEditar'));
-            modalEditar.hide();
-        };
+    document.getElementById('formEditar').onsubmit = function (event) {
+      event.preventDefault();
+      const index = document.getElementById('editIndex').value;
+      const registro = registros[index];
+      registro.nombre = document.getElementById('editNombre').value;
+      registro.casa = document.getElementById('editCasa').value;
+      registro.residente = document.getElementById('editResidente').value;
+      registro.horaEntrada = document.getElementById('editHoraEntrada').value;
+      registro.horaSalida = document.getElementById('editHoraSalida').value;
+      mostrarRegistros();
+      const modalEditar = new bootstrap.Modal(document.getElementById('modalEditar'));
+      modalEditar.hide();
+    };
 
-        // Eliminar registro
-        function eliminarRegistro(index) {
-            const registro = registros[index];
-            document.getElementById('confirmarEliminar').onclick = function() {
-                registros.splice(index, 1);
-                mostrarRegistros();
-                const modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
-                modalEliminar.hide();
-            };
-        }
-
-        // Agregar un nuevo registro
-        document.getElementById('formAgregar').onsubmit = function(event) {
-            event.preventDefault();
-            const nuevoRegistro = {
-                nombre: document.getElementById('nombre').value,
-                casa: document.getElementById('casa').value,
-                residente: document.getElementById('residente').value,
-                horaEntrada: document.getElementById('horaEntrada').value,
-                horaSalida: document.getElementById('horaSalida').value || ''
-            };
-            registros.push(nuevoRegistro);
-            mostrarRegistros();
-            const modalAgregar = new bootstrap.Modal(document.getElementById('modalAgregar'));
-            modalAgregar.hide();
-        };
-
-        // Inicializar vista
+    // Eliminar registro
+    function eliminarRegistro(index) {
+      const registro = registros[index];
+      document.getElementById('confirmarEliminar').onclick = function () {
+        registros.splice(index, 1);
         mostrarRegistros();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        const modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
+        modalEliminar.hide();
+      };
+    }
+
+    // Agregar un nuevo registro
+    document.getElementById('formAgregar').onsubmit = function (event) {
+      event.preventDefault();
+      const nuevoRegistro = {
+        nombre: document.getElementById('nombre').value,
+        casa: document.getElementById('casa').value,
+        residente: document.getElementById('residente').value,
+        horaEntrada: document.getElementById('horaEntrada').value,
+        horaSalida: document.getElementById('horaSalida').value || ''
+      };
+      registros.push(nuevoRegistro);
+      mostrarRegistros();
+      const modalAgregar = new bootstrap.Modal(document.getElementById('modalAgregar'));
+      modalAgregar.hide();
+    };
+
+    // Inicializar vista
+    mostrarRegistros();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
