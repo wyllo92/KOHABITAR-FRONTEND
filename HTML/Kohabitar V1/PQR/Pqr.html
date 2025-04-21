@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de PQR</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="p-4 d-flex flex-column min-vh-100">
+
+  <div class="container-fluid flex-grow-1 py-4">
+    <h2 class="mb-4">Gestión de PQR</h2>
+
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div class="d-flex align-items-end" style="max-width: 200px;">
+        <div class="d-flex w-100">
+          <input class="form-control py-2 rounded-start-pill" type="search" placeholder="Buscar..." id="search-pqr">
+          <button class="btn btn-light py-2 rounded-end-pill border" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#crearPqrModal">
+          <i class="fa fa-plus"></i> Nueva PQR
+        </button>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-hover bg-white shadow-sm">
+      <thead class="table-light">
+        <tr>
+          <th>Título</th>
+          <th>Tipo</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Problema con la portería</td>
+          <td>Queja</td>
+          <td>El vigilante no está en su puesto por la noche.</td>
+          <td>Pendiente</td>
+          <td>2025-04-19</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPqrModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPqrModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Limpieza de áreas comunes</td>
+          <td>Petición</td>
+          <td>Solicito más frecuencia de limpieza en escaleras.</td>
+          <td>Resuelto</td>
+          <td>2025-04-15</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPqrModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPqrModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Reparación de luminaria</td>
+          <td>Reclamo</td>
+          <td>La luz del parqueadero está dañada hace semanas.</td>
+          <td>En proceso</td>
+          <td>2025-04-10</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPqrModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPqrModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal: Crear PQR -->
+  <div class="modal fade" id="crearPqrModal" tabindex="-1" aria-labelledby="crearPqrLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="crearPqrLabel">Crear PQR</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>Título</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Tipo</label>
+              <select class="form-select" required>
+                <option value="">Seleccione</option>
+                <option>Petición</option>
+                <option>Queja</option>
+                <option>Reclamo</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Descripción</label>
+              <textarea class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label>Estado</label>
+              <select class="form-select" required>
+                <option value="">Seleccione</option>
+                <option>Pendiente</option>
+                <option>En proceso</option>
+                <option>Resuelto</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Fecha</label>
+              <input type="date" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Editar PQR -->
+  <div class="modal fade" id="editarPqrModal" tabindex="-1" aria-labelledby="editarPqrLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="editarPqrLabel">Editar PQR</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>Título</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Tipo</label>
+              <select class="form-select" required>
+                <option>Petición</option>
+                <option>Queja</option>
+                <option>Reclamo</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Descripción</label>
+              <textarea class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label>Estado</label>
+              <select class="form-select" required>
+                <option>Pendiente</option>
+                <option>En proceso</option>
+                <option>Resuelto</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Fecha</label>
+              <input type="date" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Eliminar PQR -->
+  <div class="modal fade" id="eliminarPqrModal" tabindex="-1" aria-labelledby="eliminarPqrLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="eliminarPqrLabel">Eliminar PQR</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            ¿Está seguro que desea eliminar esta PQR?
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

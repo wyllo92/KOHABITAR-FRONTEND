@@ -12,12 +12,12 @@
 </head>
 
 <body class="min-vh-100 d-flex flex-column">
-    <header class="w-100 d-flex justify-content-between align-items-center px-4 py-2 border-bottom shadow-sm">
+    <header class="w-100 d-flex justify-content-between align-items-top px-4 py-2 border-bottom shadow-sm">
         <div class="d-flex align-items-center">
             <a href="index.html" onclick="cargarVista('dashboard.html')"
-                style="display: inline-flex; align-items: center;">
-                <img src="IMG/logo-kohabitar.png" alt="Logo" height="40" class="me-2">
-                <h5 class="mb-0">KOHABITAR</h5>
+                style="display: inline-flex; align-items: top; text-decoration: none;">
+                <img src="IMG/logo-kohabitar2.jpg" alt="Logo" height="80" class="me-2">
+                <h5  class="titulo-nombre-empresa">KOHABITAR</h5>
             </a>
         </div>
 
@@ -113,14 +113,15 @@
                 <!-- Pagos -->
                 <div class="accordion-item bg-transparent border-0">
                     <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                        href="#pagosCollapse" role="button" aria-expanded="false">
+                        href="#pagosCollapse" role="button" aria-expanded="false" onclick="cargarVista('PAGOS/GestionPagos.html')">
                         <span><i class="fas fa-money-bill"></i> Pagos</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
                     <div id="pagosCollapse" class="accordion-collapse collapse submenu ps-3"
                         data-bs-parent="#menuAccordion">
-                        <a href="#" onclick="cargarVista('generar_factura.html')">Generar Factura</a>
-                        <a href="#" onclick="cargarVista('historial_pagos.html')">Historial de Pagos</a>
+                        <a href="#" onclick="cargarVista('PAGOS/GenerarFactura.html')">Generar Factura</a>
+                        <a href="#" onclick="cargarVista('PAGOS/GestionPagos.html')">Gestion pagos</a>
+                        <a href="#" onclick="cargarVista('PAGOS/HistorialPagos.html')">Historial de Pagos</a>
                     </div>
                 </div>
 
@@ -134,7 +135,7 @@
                     <div id="reportesCollapse" class="accordion-collapse collapse submenu ps-3"
                         data-bs-parent="#menuAccordion">
                         <a href="#" onclick="cargarVista('REPORTES/ReporteFinanciero.html')">Reportes Financieros</a>
-                        <a href="#" onclick="cargarVista('REPORTES/ReporteResidentes.html')">Reportes de Residentes</a>
+                        <a href="#" onclick="cargarVista('REPORTES/ReporteResidente.html')">Reportes de Residentes</a>
                     </div>
                     <!-- Notificaciones -->
                     <div class="accordion-item bg-transparent border-0">
@@ -166,6 +167,23 @@
                         <div id="paquetesCollapse" class="accordion-collapse collapse submenu ps-3"
                             data-bs-parent="#menuAccordion">
                             <a href="#" onclick="cargarVista('PAQUETES/Paquetes3.html')">Paquetes no reclamados</a>
+                        </div>
+                    </div>
+                    <!-- PQRs -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                            href="#pqrCollapse" role="button" onclick="cargarVista('PQR/pqr.html')">
+                            <span><i class="fas fa-chart-bar"></i> PQR</span>
+                            <i class="fas fa-chevron-right rotate-icon"></i>
+                        </a>
+
+                        <div id="pqrCollapse" class="accordion-collapse collapse submenu ps-3"
+                            data-bs-parent="#menuAccordion">
+                            <a href="#" onclick="cargarVista('PQR/Pqr.html')">PQRs</a>
+                        </div>
+                        <div id="pqrCollapse" class="accordion-collapse collapse submenu ps-3"
+                            data-bs-parent="#menuAccordion">
+                            <a href="#" onclick="cargarVista('PQR/ConfigurarPqr.html')">Configurar PQR</a>
                         </div>
                     </div>
                     <!-- Contenedor donde se cargarán las vistas -->

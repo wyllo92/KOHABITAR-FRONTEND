@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tipos de PQR</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5 bg-white shadow rounded-4 p-4">
+    <h2 class="mb-4">Configuracion de PQR</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Tipos de PQR</h3>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTipo">Nuevo Tipo</button>
+    </div>
+
+    <table class="table table-bordered" id="tablaTipos">
+      <thead class="table-light">
+        <tr>
+          <th>Nombre</th>
+          <th>Prioridad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalTipo" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content" id="formTipo">
+        <div class="modal-header">
+          <h5 class="modal-title">Tipo de PQR</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="tipoIndex">
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" id="nombreTipo" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prioridad</label>
+            <select id="prioridadTipo" class="form-select" required>
+              <option value="">Seleccione</option>
+              <option value="Alta">Alta</option>
+              <option value="Media">Media</option>
+              <option value="Baja">Baja</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- CRUD Script -->
+  <script>
+    // Datos de ejemplo
+    const tipos = [
+      { nombre: "Solicitud de Información", prioridad: "Media" },
+      { nombre: "Queja por Servicio", prioridad: "Alta" },
+      { nombre: "Felicitación", prioridad: "Baja" },
+    ];
+
+    function renderTipos() {
+      const tbody = document.querySelector("#tablaTipos tbody");
+      tbody.innerHTML = "";
+      tipos.forEach((tipo, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${tipo.nombre}</td>
+            <td>${tipo.prioridad}</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-1" onclick="editarTipo(${index})">Editar</button>
+              <button class="btn btn-sm btn-danger" onclick="eliminarTipo(${index})">Eliminar</button>
+            </td>
+          </tr>`;
+      });
+    }
+
+    function editarTipo(index) {
+      const tipo = tipos[index];
+      document.getElementById("nombreTipo").value = tipo.nombre;
+      document.getElementById("prioridadTipo").value = tipo.prioridad;
+      document.getElementById("tipoIndex").value = index;
+      new bootstrap.Modal(document.getElementById("modalTipo")).show();
+    }
+
+    function eliminarTipo(index) {
+      if (confirm("¿Deseas eliminar este tipo de PQR?")) {
+        tipos.splice(index, 1);
+        renderTipos();
+      }
+    }
+
+    document.getElementById("formTipo").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombreTipo").value.trim();
+      const prioridad = document.getElementById("prioridadTipo").value;
+      const index = document.getElementById("tipoIndex").value;
+
+      const nuevoTipo = { nombre, prioridad };
+
+      if (index === "") {
+        tipos.push(nuevoTipo);
+      } else {
+        tipos[index] = nuevoTipo;
+      }
+
+      e.target.reset();
+      document.getElementById("tipoIndex").value = "";
+      bootstrap.Modal.getInstance(document.getElementById("modalTipo")).hide();
+      renderTipos();
+    });
+
+    // Cargar datos al inicio
+    renderTipos();
+  </script>
+</body>
+</html>

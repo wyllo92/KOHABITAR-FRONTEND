@@ -1,6 +1,6 @@
   .sidebar {
     width: 250px;
-    background: #343a40;
+    background: #965e5b;
     color: white;
     display: flex;
     flex-direction: column;
@@ -8,9 +8,14 @@
     overflow-y: auto;
   }
   header{
-    background-color: #343a40;
+    background-color: #193E66;
     color: white;
+    height: 100px;
 
+  }
+
+  h5.titulo-nombre-empresa{
+    color: #FFF;
   }
 
   .main-content {
