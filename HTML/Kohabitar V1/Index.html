@@ -17,7 +17,7 @@
             <a href="index.html" onclick="cargarVista('dashboard.html')"
                 style="display: inline-flex; align-items: top; text-decoration: none;">
                 <img src="IMG/logo-kohabitar2.jpg" alt="Logo" height="80" class="me-2 rounded-1">
-                <h5  class="titulo-nombre-empresa">KOHABITAR</h5>
+                <h5 class="titulo-nombre-empresa">KOHABITAR</h5>
             </a>
         </div>
 
@@ -43,21 +43,21 @@
     </header>
 
     <div class="d-flex">
+        <!-- Menú Lateral Organizado -->
         <div class="sidebar">
             <div class="accordion" id="menuAccordion">
+
                 <!-- Usuarios -->
                 <div class="accordion-item bg-transparent border-0">
                     <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
                         href="#usuariosCollapse" role="button" aria-expanded="false">
-                        <span><i class="fa-solid fa-users"></i>Usuarios/Propiedades</span>
+                        <span><i class="fa-solid fa-users"></i> Usuarios/Propiedades</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="usuariosCollapse" class="accordion-collapse collapse submenu ps-3"
-                        data-bs-parent="#menuAccordion">
+                    <div id="usuariosCollapse" class="accordion-collapse collapse submenu ps-3">
                         <a href="#" onclick="cargarVista('USUARIOS/Usuarios.html')">Gestión de Usuarios</a>
                         <a href="#" onclick="cargarVista('USUARIOS/Propiedades.html')">Gestión de Propiedades</a>
                     </div>
-
                 </div>
 
                 <!-- Parqueaderos -->
@@ -67,8 +67,7 @@
                         <span><i class="fas fa-car"></i> Parqueaderos</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="parqueaderosCollapse" class="accordion-collapse collapse submenu ps-3"
-                        data-bs-parent="#menuAccordion">
+                    <div id="parqueaderosCollapse" class="accordion-collapse collapse submenu ps-3">
                         <a href="#" onclick="cargarVista('PARQUEADEROS/AsignarParqueadero.html')">Asignar
                             Parqueadero</a>
                         <a href="#" onclick="cargarVista('PARQUEADEROS/RegistroParqueadero.html')">Registro de
@@ -81,46 +80,41 @@
                 <!-- Visitas -->
                 <div class="accordion-item bg-transparent border-0">
                     <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                        href="#visitasCollapse" role="button" role="button" onclick="cargarVista('VISITANTES/Visitas.html')"aria-expanded="false">
+                        href="#visitasCollapse" role="button" aria-expanded="false">
                         <span><i class="fas fa-shield-alt"></i> Visitas</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="visitasCollapse" class="accordion-collapse collapse submenu ps-3"
-                        data-bs-parent="#menuAccordion">
+                    <div id="visitasCollapse" class="accordion-collapse collapse submenu ps-3">
                         <a href="#" onclick="cargarVista('VISITANTES/RegistroVisitante.html')">Registro de
                             Visitantes</a>
                         <a href="#" onclick="cargarVista('VISITANTES/RegistroVehiculoVisitante.html')">Gestión de
-                            vehículos de
-                            visitantes</a>
+                            vehículos</a>
                     </div>
                 </div>
 
                 <!-- Zonas Comunes -->
-
                 <div class="accordion-item bg-transparent border-0">
                     <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
                         href="#zonasComunesCollapse" role="button" aria-expanded="false">
-                        <span><i class="fas fa-shield-alt"></i> Zonas Comunes</span>
+                        <span><i class="fas fa-tree"></i> Zonas Comunes</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="zonasComunesCollapse" class="accordion-collapse collapse submenu ps-3"
-                        data-bs-parent="#menuAccordion">
-                        <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes.html')">Registro de Visitantes</a>
-                        <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes2.html')">Registro de Visitantes</a>
+                    <div id="zonasComunesCollapse" class="accordion-collapse collapse submenu ps-3">
+                        <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes.html')">Zonas Comunes 1</a>
+                        <a href="#" onclick="cargarVista('ZONASCOMUNES/ZonasComunes2.html')">Zonas Comunes 2</a>
                     </div>
                 </div>
 
                 <!-- Pagos -->
                 <div class="accordion-item bg-transparent border-0">
                     <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                        href="#pagosCollapse" role="button" aria-expanded="false" onclick="cargarVista('PAGOS/GestionPagos.html')">
+                        href="#pagosCollapse" role="button" aria-expanded="false">
                         <span><i class="fas fa-money-bill"></i> Pagos</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="pagosCollapse" class="accordion-collapse collapse submenu ps-3"
-                        data-bs-parent="#menuAccordion">
+                    <div id="pagosCollapse" class="accordion-collapse collapse submenu ps-3">
                         <a href="#" onclick="cargarVista('PAGOS/GenerarFactura.html')">Generar Factura</a>
-                        <a href="#" onclick="cargarVista('PAGOS/GestionPagos.html')">Gestion pagos</a>
+                        <a href="#" onclick="cargarVista('PAGOS/GestionPagos.html')">Gestión de Pagos</a>
                         <a href="#" onclick="cargarVista('PAGOS/HistorialPagos.html')">Historial de Pagos</a>
                     </div>
                 </div>
@@ -132,63 +126,55 @@
                         <span><i class="fas fa-chart-bar"></i> Reportes</span>
                         <i class="fas fa-chevron-right rotate-icon"></i>
                     </a>
-                    <div id="reportesCollapse" class="accordion-collapse collapse submenu ps-3"
-                        data-bs-parent="#menuAccordion">
-                        <a href="#" onclick="cargarVista('REPORTES/ReporteFinanciero.html')">Reportes Financieros</a>
-                        <a href="#" onclick="cargarVista('REPORTES/ReporteResidente.html')">Reportes de Residentes</a>
+                    <div id="reportesCollapse" class="accordion-collapse collapse submenu ps-3">
+                        <a href="#" onclick="cargarVista('REPORTES/ReporteFinanciero.html')">Financieros</a>
+                        <a href="#" onclick="cargarVista('REPORTES/ReporteResidente.html')">De Residentes</a>
                     </div>
-                    <!-- Notificaciones -->
-                    <div class="accordion-item bg-transparent border-0">
-                        <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                            href="#notificacionesCollapse" role="button" aria-expanded="false">
-                            <span><i class="fa-solid fa-bell"></i> Notificaciones</span>
-                            <i class="fas fa-chevron-right rotate-icon"></i>
-                        </a>
-                        <div id="notificacionesCollapse" class="accordion-collapse collapse submenu ps-3"
-                            data-bs-parent="#menuAccordion">
-                            <a href="#" onclick="cargarVista('NOTIFICACIONES/mainNotificaciones.html')">Añadir
-                                notificación</a>
-                            <a href="#"
-                                onclick="cargarVista('NOTIFICACIONES/ejemNotificaciones.html')">Notificaciones</a>
-                        </div>
-                    </div>
-                    <!-- Paquetes -->
-                    <div class="accordion-item bg-transparent border-0">
-                        <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                            href="#paquetesCollapse" role="button" onclick="cargarVista('PAQUETES/Paquetes1.html')">
-                            <span><i class="fa-solid fa-truck"></i> Paquetes</span>
-                            <i class="fas fa-chevron-right rotate-icon"></i>
-                        </a>
-
-                        <div id="paquetesCollapse" class="accordion-collapse collapse submenu ps-3"
-                            data-bs-parent="#menuAccordion">
-                            <a href="#" onclick="cargarVista('PAQUETES/Paquetes2.html')">Paquetes recibidos</a>
-                        </div>
-                        <div id="paquetesCollapse" class="accordion-collapse collapse submenu ps-3"
-                            data-bs-parent="#menuAccordion">
-                            <a href="#" onclick="cargarVista('PAQUETES/Paquetes3.html')">Paquetes no reclamados</a>
-                        </div>
-                    </div>
-                    <!-- PQRs -->
-                    <div class="accordion-item bg-transparent border-0">
-                        <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-                            href="#pqrCollapse" role="button" onclick="cargarVista('PQR/pqr.html')">
-                            <span><i class="fa-regular fa-rectangle-list"></i> PQR</span>
-                            <i class="fas fa-chevron-right rotate-icon"></i>
-                        </a>
-
-                        <div id="pqrCollapse" class="accordion-collapse collapse submenu ps-3"
-                            data-bs-parent="#menuAccordion">
-                            <a href="#" onclick="cargarVista('PQR/Pqr.html')">PQRs</a>
-                        </div>
-                        <div id="pqrCollapse" class="accordion-collapse collapse submenu ps-3"
-                            data-bs-parent="#menuAccordion">
-                            <a href="#" onclick="cargarVista('PQR/ConfigurarPqr.html')">Configurar PQR</a>
-                        </div>
-                    </div>
-                    <!-- Contenedor donde se cargarán las vistas -->
-                    <div id="contenidoVista"></div>
                 </div>
+
+                <!-- Notificaciones -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#notificacionesCollapse" role="button" aria-expanded="false">
+                        <span><i class="fa-solid fa-bell"></i> Notificaciones</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="notificacionesCollapse" class="accordion-collapse collapse submenu ps-3">
+                        <a href="#" onclick="cargarVista('NOTIFICACIONES/MainNotificaciones.html')">Añadir
+                            notificación</a>
+                        <a href="#" onclick="cargarVista('NOTIFICACIONES/ConfiguracionNotificaciones.html')">Configurar
+                            notificaciones</a>
+                    </div>
+                </div>
+
+
+                <!-- Paquetes -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#paquetesCollapse" role="button" aria-expanded="false">
+                        <span><i class="fa-solid fa-truck"></i> Paquetes</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="paquetesCollapse" class="accordion-collapse collapse submenu ps-3">
+                        <a href="#" onclick="cargarVista('PAQUETES/Paquetes1.html')">Todos los Paquetes</a>
+                        <a href="#" onclick="cargarVista('PAQUETES/Paquetes2.html')">Paquetes Recibidos</a>
+                        <a href="#" onclick="cargarVista('PAQUETES/Paquetes3.html')">No Reclamados</a>
+                    </div>
+                </div>
+
+                <!-- PQRs -->
+                <div class="accordion-item bg-transparent border-0">
+                    <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                        href="#pqrCollapse" role="button" aria-expanded="false">
+                        <span><i class="fa-regular fa-rectangle-list"></i> PQRs</span>
+                        <i class="fas fa-chevron-right rotate-icon"></i>
+                    </a>
+                    <div id="pqrCollapse" class="accordion-collapse collapse submenu ps-3">
+                        <a href="#" onclick="cargarVista('PQR/Pqr.html')">Ver PQRs</a>
+                        <a href="#" onclick="cargarVista('PQR/ConfigurarPqr.html')">Configurar PQRs</a>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -198,7 +184,8 @@
                 <iframe id="vistaFrame" src="dashboard.html"></iframe>
             </div>
             <footer class="text-black text-center py-3 bg-white mt-auto shadow-sm">
-                <p class="mb-0">&copy; 2025 Sistema de Gestión de Propiedad Horizontal. Todos los derechos reservados.
+                <p class="mb-0">&copy; 2025 Sistema de Gestión de Propiedad Horizontal. Todos los derechos
+                    reservados.
                 </p>
                 <small>Desarrollado por Kohabitar cloud</small>
             </footer>
