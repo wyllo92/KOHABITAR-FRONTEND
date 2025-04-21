@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Nueva Visita</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h2><i class="fas fa-user-plus me-2"></i>Registrar Nueva Visita</h2>
+                <p class="text-muted">Complete el formulario para registrar una nueva visita en el sistema</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form id="formRegistrarVisita">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="card-title mb-3 text-primary">
+                                        <i class="fas fa-user me-2"></i>Datos del Visitante
+                                    </h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regNombre" class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="regNombre" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regDocumento" class="form-label">Documento de Identidad</label>
+                                        <input type="text" class="form-control" id="regDocumento" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regTelefono" class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-control" id="regTelefono">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regCorreo" class="form-label">Correo Electrónico</label>
+                                        <input type="email" class="form-control" id="regCorreo">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="card-title mb-3 text-primary">
+                                        <i class="fas fa-home me-2"></i>Datos de la Visita
+                                    </h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regCasa" class="form-label">Casa o Apartamento</label>
+                                        <input type="number" class="form-control" id="regCasa" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regResidente" class="form-label">Residente a Visitar</label>
+                                        <input type="text" class="form-control" id="regResidente" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regProposito" class="form-label">Propósito de la Visita</label>
+                                        <select class="form-select" id="regProposito" required>
+                                            <option value="">Seleccione un propósito</option>
+                                            <option value="Social">Social</option>
+                                            <option value="Familiar">Familiar</option>
+                                            <option value="Servicios">Servicios</option>
+                                            <option value="Entrega">Entrega</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" id="otroProposito" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="regOtroProposito" class="form-label">Especifique el
+                                            Propósito</label>
+                                        <input type="text" class="form-control" id="regOtroProposito">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="regObservaciones" class="form-label">Observaciones</label>
+                                        <textarea class="form-control" id="regObservaciones" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="card-title mb-3 text-primary">
+                                        <i class="fas fa-clock me-2"></i>Control de Acceso
+                                    </h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regFecha" class="form-label">Fecha</label>
+                                        <input type="date" class="form-control" id="regFecha" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regHoraEntrada" class="form-label">Hora Entrada</label>
+                                        <input type="time" class="form-control" id="regHoraEntrada" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="regDuracionEstimada" class="form-label">Duración Estimada
+                                            (horas)</label>
+                                        <input type="number" class="form-control" id="regDuracionEstimada" min="1"
+                                            value="2">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 form-check mt-4">
+                                        <input type="checkbox" class="form-check-input" id="regPreAutorizado">
+                                        <label class="form-check-label" for="regPreAutorizado">Visitante
+                                            Pre-autorizado</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-end">
+                                <a href="RegistroVisitante.html" class="btn btn-secondary me-2">
+                                    <i class="fas fa-times me-2"></i>Cancelar
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save me-2"></i>Registrar Visita
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <!-- Tarjeta de información -->
+                <div class="card mb-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <i class="fas fa-info-circle me-2"></i>Información
+                    </div>
+                    <div class="card-body">
+                        <p>Complete todos los campos obligatorios (marcados con *).</p>
+                        <p>El sistema registrará automáticamente la fecha y hora actual si no se especifica.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de ayuda rápida -->
+                <div class="card border-info">
+                    <div class="card-header bg-info text-white">
+                        <i class="fas fa-question-circle me-2"></i>Ayuda Rápida
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-2">Instrucciones para el visitante</h6>
+                        <p class="small">Indique al visitante que debe:</p>
+                        <ol class="small">
+                            <li>Presentar su identificación al ingresar</li>
+                            <li>Tener autorización un residente o un propietario para seguir</li>
+                            <li>Registrar su salida al abandonar las instalaciones</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de visita registrada exitosamente (inicialmente oculto) -->
+        <div class="row mt-4" id="visitaRegistradaExito" style="display: none;">
+            <div class="col-12">
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <strong>¡Visita registrada con éxito!</strong>
+                    <p class="mb-0 mt-2">Se ha generado un pase de entrada para el visitante.</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Detalles de la Visita</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Visitante:</strong> <span id="detalleNombreConfirm"></span></p>
+                                <p><strong>Destino:</strong> Casa <span id="detalleCasaConfirm"></span></p>
+                                <p><strong>Residente:</strong> <span id="detalleResidenteConfirm"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Fecha:</strong> <span id="detalleFechaConfirm"></span></p>
+                                <p><strong>Hora de Entrada:</strong> <span id="detalleHoraEntradaConfirm"></span></p>
+                                <p><strong>Propósito:</strong> <span id="detallePropositoConfirm"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Pase de Visita</h5>
+                        <div id="generatedQR" class="my-3"></div>
+                        <p class="card-text">Código: <strong id="codigoPaseConfirm"></strong></p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" id="btnImprimirPaseConfirm">
+                                <i class="fas fa-print me-2"></i>Imprimir Pase
+                            </button>
+                            <a href="RegistrarVisita.html" class="btn btn-outline-primary">
+                                <i class="fas fa-plus me-2"></i>Registrar Otra Visita
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
