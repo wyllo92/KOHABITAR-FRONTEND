@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Configuración de Notificaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        h2 {
+            font-weight: 700;
+        }
+
+        .form-check-label {
+            font-weight: 500;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .modal-header,
+        .modal-footer {
+            background-color: #f1f1f1;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-5">Configuración de Notificaciones</h2>
+
+        <form id="notificacionesForm" class="card p-4 shadow-sm border-0 rounded-4 bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">Servicios disponibles</h5>
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                    data-bs-target="#modalServicio">
+                    ➕ Añadir / Editar
+                </button>
+            </div>
+
+            <!-- Notificaciones por servicio -->
+            <div id="serviciosContainer">
+                <!-- Aquí se listarán los servicios existentes -->
+                <!-- Cada servicio es un checkbox con un textarea para mensaje -->
+                <!-- Los datos se pueden añadir dinámicamente o están predefinidos -->
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-4">💾 Guardar Configuración</button>
+        </form>
+
+        <!-- Resultado -->
+        <div id="resultado" class="alert mt-4 d-none shadow-sm rounded-4"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalServicio" tabindex="-1" aria-labelledby="modalServicioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4">
+                <form id="formServicio">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalServicioLabel">Gestión de Servicio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nombreServicio" class="form-label">Nombre del servicio</label>
+                            <input type="text" class="form-control" id="nombreServicio" required
+                                placeholder="Escribe el nombre...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionServicio" class="form-label">Nuevo mensaje</label>
+                            <textarea class="form-control" id="descripcionServicio" rows="3"
+                                placeholder="Mensaje que se enviará con este servicio..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS principal -->
+    <script>
+        const serviciosPredefinidos = [
+            { id: 'parqueaderos', nombre: 'Parqueaderos', mensaje: '' },
+            { id: 'pagos', nombre: 'Pagos (administración, multas, zonas comunes)', mensaje: '' },
+            { id: 'paquetes', nombre: 'Entrega de paquetes', mensaje: '' },
+            { id: 'fechas_pago', nombre: 'Fechas de pago', mensaje: '' },
+            { id: 'mantenimientos', nombre: 'Mantenimientos preventivos', mensaje: '' },
+            { id: 'pqr', nombre: 'Estado de PQRs', mensaje: '' },
+            { id: 'asambleas', nombre: 'Asambleas y reuniones', mensaje: '' },
+            { id: 'reservas', nombre: 'Reservas exitosas (parqueaderos / zonas comunes)', mensaje: '' },
+        ];
+
+        const serviciosContainer = document.getElementById('serviciosContainer');
+
+        function renderServicios() {
+            serviciosContainer.innerHTML = '';
+            serviciosPredefinidos.forEach(servicio => {
+                serviciosContainer.innerHTML += `
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="${servicio.nombre}" id="${servicio.id}">
+            <label class="form-check-label" for="${servicio.id}">${servicio.nombre}</label>
+          </div>
+          <textarea class="form-control mt-1" id="msg_${servicio.id}" rows="2"
+            placeholder="Mensaje para notificaciones de ${servicio.nombre.toLowerCase()}...">${servicio.mensaje}</textarea>
+        </div>`;
+            });
+        }
+
+        renderServicios();
+
+        // Guardar configuración
+        document.getElementById('notificacionesForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const resultado = document.getElementById('resultado');
+            resultado.classList.remove('d-none');
+            resultado.classList.remove('alert-danger', 'alert-success');
+
+            let resumen = '<h5 class="mb-2">🔔 Configuración guardada</h5><ul>';
+            let configurado = false;
+
+            serviciosPredefinidos.forEach(servicio => {
+                const checkbox = document.getElementById(servicio.id);
+                const mensaje = document.getElementById(`msg_${servicio.id}`).value.trim();
+                if (checkbox.checked) {
+                    resumen += `<li><strong>${servicio.nombre}</strong>: ${mensaje || '(Mensaje vacío)'}</li>`;
+                    configurado = true;
+                }
+            });
+
+            resumen += '</ul>';
+
+            if (configurado) {
+                resultado.classList.add('alert-success');
+                resultado.innerHTML = resumen;
+            } else {
+                resultado.classList.add('alert-danger');
+                resultado.innerHTML = '<strong>⚠️ Debes seleccionar al menos un servicio para guardar la configuración.</strong>';
+            }
+        });
+
+        // Añadir/editar servicio desde el modal
+        document.getElementById('formServicio').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombreServicio').value.trim();
+            const descripcion = document.getElementById('descripcionServicio').value.trim();
+
+            if (!nombre) return;
+
+            const id = nombre.toLowerCase().replace(/\s+/g, '_');
+            const existente = serviciosPredefinidos.find(s => s.id === id);
+
+            if (existente) {
+                existente.nombre = nombre;
+                existente.mensaje = descripcion;
+            } else {
+                serviciosPredefinidos.push({ id, nombre, mensaje: descripcion });
+            }
+
+            renderServicios();
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalServicio'));
+            modal.hide();
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

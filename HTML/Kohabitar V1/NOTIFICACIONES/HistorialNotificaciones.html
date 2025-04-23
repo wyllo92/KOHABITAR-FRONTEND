@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Notificaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="historial_notificaciones.css">
+</head>
+
+<body>
+    <div class="container py-5">
+        <h2 class="text-center text-primary mb-4">📜 Historial de Notificaciones</h2>
+
+        <div id="notificaciones-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
+
+        <!-- Paginación -->
+        <nav aria-label="Paginación de notificaciones" class="mt-4">
+            <ul id="paginacion" class="pagination justify-content-center"></ul>
+        </nav>
+
+        <div class="text-center mt-4">
+            <a href="MainNotificaciones.html" class="btn btn-outline-primary">🔙 Volver a Configuración</a>
+        </div>
+    </div>
+
+    <script>
+        const notificaciones = [
+            //ejemplos con temas variados
+            { tipo: 'Multa', metodo: 'Correo', mensaje: 'Tienes una nueva multa por ruido en casa 12', fecha: '2025-04-01' },
+            { tipo: 'Visita', metodo: 'App', mensaje: 'Llegó una visita para la casa 23 a las 3:00 PM', fecha: '2025-04-01' },
+            { tipo: 'Paquete', metodo: 'Correo', mensaje: 'Paquete recibido para casa 18. Recoja en portería.', fecha: '2025-04-02' },
+            { tipo: 'PQRS', metodo: 'App', mensaje: 'Su solicitud PQRS ha sido atendida y cerrada.', fecha: '2025-04-03' },
+            { tipo: 'Pago administración', metodo: 'Correo', mensaje: 'Recuerde que el pago vence el 10 de abril.', fecha: '2025-04-03' },
+            { tipo: 'Cuota extraordinaria', metodo: 'Ambos', mensaje: 'Nueva cuota extraordinaria asignada para mantenimiento.', fecha: '2025-04-04' },
+            { tipo: 'Zonas comunes', metodo: 'App', mensaje: 'Reserva de salón comunal confirmada.', fecha: '2025-04-05' },
+            { tipo: 'Mantenimiento', metodo: 'Correo', mensaje: 'Se realizará mantenimiento en la zona verde el 6 de abril.', fecha: '2025-04-05' },
+            { tipo: 'Visita', metodo: 'App', mensaje: 'Visitante registrado para la casa 34.', fecha: '2025-04-05' },
+            { tipo: 'Multa', metodo: 'Correo', mensaje: 'Nueva multa por parqueo indebido frente a casa 10.', fecha: '2025-04-06' },
+            ...Array.from({ length: 40 }, (_, i) => ({
+                tipo: ['Visita', 'Multa', 'Paquete', 'PQRS', 'Mantenimiento', 'Pago administración', 'Cuota extraordinaria'][i % 7],
+                metodo: ['Correo', 'App', 'Ambos'][i % 3],
+                mensaje: `Ejemplo de notificación número ${i + 11}`,
+                fecha: `2025-04-${(i % 30 + 1).toString().padStart(2, '0')}`
+            }))
+        ];
+
+        const notificacionesPorPagina = 5;
+        let paginaActual = 1;
+
+        function mostrarNotificaciones(pagina) {
+            const contenedor = document.getElementById('notificaciones-container');
+            contenedor.innerHTML = '';
+            const inicio = (pagina - 1) * notificacionesPorPagina;
+            const fin = inicio + notificacionesPorPagina;
+
+            notificaciones.slice(inicio, fin).forEach(n => {
+                contenedor.innerHTML += `
+                    <div class="col">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">${n.tipo}</h5>
+                                <p class="card-text">${n.mensaje}</p>
+                                <p class="mb-1"><strong>Método:</strong> ${n.metodo}</p>
+                                <p class="mb-0"><strong>Fecha:</strong> ${n.fecha}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            generarPaginacion();
+        }
+
+        function generarPaginacion() {
+            const totalPaginas = Math.ceil(notificaciones.length / notificacionesPorPagina);
+            const paginacion = document.getElementById('paginacion');
+            paginacion.innerHTML = '';
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                paginacion.innerHTML += `
+                    <li class="page-item ${i === paginaActual ? 'active' : ''}">
+                        <button class="page-link" onclick="cambiarPagina(${i})">${i}</button>
+                    </li>
+                `;
+            }
+        }
+
+        function cambiarPagina(pagina) {
+            paginaActual = pagina;
+            mostrarNotificaciones(paginaActual);
+        }
+
+        // Cargar la primera página
+        mostrarNotificaciones(paginaActual);
+    </script>
+</body>
+
+</html>
