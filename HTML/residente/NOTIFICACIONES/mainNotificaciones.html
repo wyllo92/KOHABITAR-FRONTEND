@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Notificaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .config-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .config-header {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .config-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+        .table-header {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="config-container">
+        <div class="config-header">Configuración de Notificaciones</div>
+        
+        <div class="config-box mt-3">
+            <h5>Configurar Notificación</h5>
+            <form>
+                <div class="mb-2">
+                    <label class="form-label">Título:</label>
+                    <input type="text" class="form-control" disabled>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Mensaje de la notificación:</label>
+                    <input type="text" class="form-control" disabled>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Estado de la notificación:</label>
+                    <input type="text" class="form-control" disabled>
+                </div>
+                <button type="submit" class="btn btn-secondary" disabled>Agregar Notificación</button>
+            </form>
+        </div>
+        
+        <div class="mt-4">
+            <div class="table-header p-2">Notificaciones Configuradas</div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Mensaje</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Corte de Agua</td>
+                        <td>El día de mañana habrá corte de agua</td>
+                        <td>Activo</td>
+                        <td><a href="#" class="text-primary">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
