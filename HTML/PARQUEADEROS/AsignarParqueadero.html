@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sorteo de Parqueaderos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="p-3 d-flex flex-column min-vh-100">
+
+  <div class="container flex-grow-1 py-4">
+    <h2 class="mb-4">Programar Sorteo de Parqueaderos</h2>
+
+  <!-- Información del sorteo -->
+  <form class="card shadow p-4 mb-5 bg-white">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Fecha del sorteo</label>
+        <input type="date" class="form-control" value="2025-04-30" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Cantidad de cupos disponibles</label>
+        <input type="number" class="form-control" value="200" />
+      </div>
+      <div class="col-12 text-end">
+        <button type="button" class="btn btn-success mt-3"><i class="fa fa-random me-1"></i> Realizar Sorteo</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Participantes del sorteo -->
+  <div class="card shadow mb-5">
+    <div class="card-header bg-primary text-white">
+      Participantes Registrados
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Casa</th>
+            <th>Parqueadero asignado</th>
+            <th>Placa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>001</td><td>Andrea Torres</td><td>Casa 01</td><td>001</td><td>ABC123</td></tr>
+          <tr><td>002</td><td>Luis Gonzales</td><td>Casa 02</td><td>002</td><td>DEF456</td></tr>
+          <tr><td>003</td><td>Laura Méndez</td><td>Casa 03</td><td>003</td><td>GHI789</td></tr>
+          <tr><td>004</td><td>Pedro Trespalacio</td><td>Casa 04</td><td>004</td><td>JKL101</td></tr>
+          <tr><td>005</td><td>Luisa Moreno</td><td>Casa 05</td><td>005</td><td>MNO112</td></tr>
+          <tr><td>006</td><td>Jose Restrepo</td><td>Casa 06</td><td>006</td><td>PQR131</td></tr>
+          <tr><td>007</td><td>Andrea Torres</td><td>Casa 01</td><td>001</td><td>ABC123</td></tr>
+          <tr><td>008</td><td>Luis Gonzales</td><td>Casa 02</td><td>002</td><td>DEF456</td></tr>
+          <tr><td>009</td><td>Laura Méndez</td><td>Casa 03</td><td>003</td><td>GHI789</td></tr>
+          <tr><td>010</td><td>Pedro Trespalacio</td><td>Casa 04</td><td>004</td><td>JKL101</td></tr>
+          <tr><td>011</td><td>Luisa Moreno</td><td>Casa 05</td><td>005</td><td>MNO112</td></tr>
+          <tr><td>012</td><td>Jose Restrepo</td><td>Casa 06</td><td>006</td><td>PQR131</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-end">
+    <a href="HistorialSorteos.html" class="btn btn-outline-secondary"><i class="fa fa-clock me-1"></i> Ver historial de sorteos</a>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

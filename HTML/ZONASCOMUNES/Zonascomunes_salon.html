@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Zona Común</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Formulario - Zona Común: Salón de Eventos</h5>
+            </div>
+            <div class="card-body">
+
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label" for="nombreZona">Nombre de la zona</label>
+                        <input type="text" class="form-control" id="nombreZona" value="Salón de Eventos">
+                    </div>
+
+                    <div class="form-check form-switch mb-4">
+                        <input class="form-check-input" type="checkbox" id="zonaActiva" checked>
+                        <label class="form-check-label" for="zonaActiva">Zona activa</label>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="horario">Horario</label>
+                            <input type="text" class="form-control" id="horario" value="10:00 AM - 11:00 PM">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="capacidad">Capacidad máxima</label>
+                            <input type="number" class="form-control" id="capacidad" value="80">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="uso">Uso obligatorio</label>
+                        <input type="text" class="form-control" id="uso" value="Reserva con 3 días de anticipación y pago de depósito">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="restricciones">Restricciones</label>
+                        <textarea class="form-control" id="restricciones"
+                            rows="2">Prohibido realizar fiestas sin autorización. No se permite uso de pirotecnia ni actividades peligrosas.</textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="sanciones">Sanciones</label>
+                        <textarea class="form-control" id="sanciones"
+                            rows="2">Incumplimiento de normas = suspensión por 60 días y pérdida del depósito.</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success me-2">Guardar</button>
+                        <a href="Reservas_salon.html" class="btn btn-outline-success">Reservas</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

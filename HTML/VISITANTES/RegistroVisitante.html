@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestión de Visitantes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="p-3 d-flex flex-column min-vh-100">
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h3><i class="mb-4"></i>Control de Visitantes</h3>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex gap-2 justify-content-md-end">
+          <!-- Filtros y opciones -->
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filtroDropdown"
+              data-bs-toggle="dropdown">
+              <i class="fas fa-filter"></i> Filtrar
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filtroDropdown">
+              <li><a class="dropdown-item" href="#" onclick="filtrarVisitantes('todos')">Todos</a></li>
+              <li><a class="dropdown-item" href="#" onclick="filtrarVisitantes('activos')">Visitas Activas</a></li>
+              <li><a class="dropdown-item" href="#" onclick="filtrarVisitantes('completados')">Visitas Completadas</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="search-container position-relative">
+            <input class="form-control py-2 rounded-pill" type="search" placeholder="Buscar visitante..."
+              id="search-input">
+            <button class="btn position-absolute top-50 end-0 translate-middle-y me-2" type="button"
+              onclick="buscarVisitante()">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas de resumen -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5 class="card-title">Total Visitantes</h5>
+                <h3 class="card-text" id="totalVisitantes">20</h3>
+              </div>
+              <div>
+                <i class="fas fa-users fa-3x opacity-50"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5 class="card-title">Visitas Activas</h5>
+                <h3 class="card-text" id="visitasActivas">8</h3>
+              </div>
+              <div>
+                <i class="fas fa-door-open fa-3x opacity-50"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-info text-white">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5 class="card-title">Visitas Hoy</h5>
+                <h3 class="card-text" id="visitasHoy">5</h3>
+              </div>
+              <div>
+                <i class="fas fa-calendar-day fa-3x opacity-50"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de visitantes -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre Visitante</th>
+                <th>Documento</th>
+                <th>Casa</th>
+                <th>Residente</th>
+                <th>Propósito</th>
+                <th>Fecha</th>
+                <th>Hora Entrada</th>
+                <th>Hora Salida</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaVisitantes">
+              <!-- La tabla se llenará con JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginación -->
+        <nav aria-label="Paginación">
+          <ul class="pagination justify-content-center" id="paginacionVisitantes"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modales -->
+  <!-- Modal Editar -->
+  <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-white">
+          <h5 class="modal-title"><i class="fas fa-edit me-2"></i>Editar Visita</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formEditar">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="editarNombre" class="form-label">Nombre del visitante</label>
+                <input type="text" class="form-control" id="editarNombre">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="editarDocumento" class="form-label">Documento</label>
+                <input type="text" class="form-control" id="editarDocumento">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="editarCasa" class="form-label">Casa</label>
+                <input type="text" class="form-control" id="editarCasa">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="editarFecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="editarFecha">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="editarHoraEntrada" class="form-label">Hora Entrada</label>
+                <input type="time" class="form-control" id="editarHoraEntrada">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="editarResidente" class="form-label">Residente</label>
+                <input type="text" class="form-control" id="editarResidente">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="editarProposito" class="form-label">Propósito</label>
+                <input type="text" class="form-control" id="editarProposito">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="editarEstado" class="form-label">Estado</label>
+                <select class="form-select" id="editarEstado">
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="En curso">En curso</option>
+                  <option value="Finalizada">Finalizada</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="editarHoraSalida" class="form-label">Hora Salida</label>
+                <input type="time" class="form-control" id="editarHoraSalida">
+              </div>
+            </div>
+            <div class="text-end">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-warning" onclick="guardarEdicion()">Guardar Cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Eliminar -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title"><i class="fas fa-trash me-2"></i>Eliminar Registro</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de eliminar a <strong id="eliminarNombre"></strong>?</p>
+          <div class="text-end">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-danger" onclick="eliminarVisitante()">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Registrar Salida -->
+  <div class="modal fade" id="modalSalida" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title"><i class="fas fa-sign-out-alt me-2"></i>Registrar Salida</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formSalida">
+            <div class="mb-3">
+              <p>Registrar salida de: <strong id="salidaNombre"></strong></p>
+            </div>
+            <div class="mb-3">
+              <label for="horaSalida" class="form-label">Hora de salida</label>
+              <input type="time" class="form-control" id="horaSalida" required>
+            </div>
+            <div class="text-end">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success" onclick="registrarSalida()">Confirmar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Detalles -->
+  <div class="modal fade" id="modalDetalles" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-info text-white">
+          <h5 class="modal-title"><i class="fas fa-info-circle me-2"></i>Detalles de la Visita</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Nombre:</strong> <span id="detalleNombre"></span></p>
+          <p><strong>Documento:</strong> <span id="detalleDocumento"></span></p>
+          <p><strong>Casa:</strong> <span id="detalleCasa"></span></p>
+          <p><strong>Residente:</strong> <span id="detalleResidente"></span></p>
+          <p><strong>Propósito:</strong> <span id="detalleProposito"></span></p>
+          <p><strong>Fecha:</strong> <span id="detalleFecha"></span></p>
+          <p><strong>Hora Entrada:</strong> <span id="detalleHoraEntrada"></span></p>
+          <p><strong>Hora Salida:</strong> <span id="detalleHoraSalida"></span></p>
+          <p><strong>Estado:</strong> <span id="detalleEstado"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    // Datos de visitantes de ejemplo
+    const visitantes = [
+      {
+        id: 1,
+        nombre: 'Juan Pérez',
+        documento: '12345678',
+        casa: '12',
+        residente: 'Luis García',
+        proposito: 'Visita familiar',
+        fecha: '2025-04-20',
+        horaEntrada: '09:30',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 2,
+        nombre: 'Ana Gómez',
+        documento: '98765432',
+        casa: '15',
+        residente: 'Carlos Ramírez',
+        proposito: 'Entrega',
+        fecha: '2025-04-19',
+        horaEntrada: '14:15',
+        horaSalida: '15:30',
+        estado: 'Finalizada'
+      },
+      {
+        id: 3,
+        nombre: 'Pedro Ruiz',
+        documento: '11122333',
+        casa: '3',
+        residente: 'Claudia Torres',
+        proposito: 'Reunión',
+        fecha: '2025-04-20',
+        horaEntrada: '11:00',
+        horaSalida: '',
+        estado: 'Pendiente'
+      },
+      {
+        id: 4,
+        nombre: 'Laura Martínez',
+        documento: '22233444',
+        casa: '8',
+        residente: 'Andrés Mejía',
+        proposito: 'Visita médica',
+        fecha: '2025-04-20',
+        horaEntrada: '10:45',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 5,
+        nombre: 'Carlos Díaz',
+        documento: '55566777',
+        casa: '21',
+        residente: 'Sofía Álvarez',
+        proposito: 'Entrega',
+        fecha: '2025-04-18',
+        horaEntrada: '16:20',
+        horaSalida: '16:45',
+        estado: 'Finalizada'
+      },
+      {
+        id: 6,
+        nombre: 'Diana López',
+        documento: '33344555',
+        casa: '10',
+        residente: 'Camilo Herrera',
+        proposito: 'Reparación',
+        fecha: '2025-04-21',
+        horaEntrada: '08:00',
+        horaSalida: '',
+        estado: 'Pendiente'
+      },
+      {
+        id: 7,
+        nombre: 'Sergio Castro',
+        documento: '66677888',
+        casa: '18',
+        residente: 'Marcela Ríos',
+        proposito: 'Amigo',
+        fecha: '2025-04-20',
+        horaEntrada: '13:15',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 8,
+        nombre: 'Marta Rivas',
+        documento: '44455666',
+        casa: '25',
+        residente: 'Juan Muñoz',
+        proposito: 'Fiesta',
+        fecha: '2025-04-19',
+        horaEntrada: '20:00',
+        horaSalida: '23:45',
+        estado: 'Finalizada'
+      },
+      {
+        id: 9,
+        nombre: 'Esteban Vega',
+        documento: '77788999',
+        casa: '6',
+        residente: 'Felipe Cárdenas',
+        proposito: 'Trabajo',
+        fecha: '2025-04-21',
+        horaEntrada: '09:00',
+        horaSalida: '',
+        estado: 'Pendiente'
+      },
+      {
+        id: 10,
+        nombre: 'Patricia Bonilla',
+        documento: '88899000',
+        casa: '30',
+        residente: 'Daniela Cruz',
+        proposito: 'Entrega',
+        fecha: '2025-04-20',
+        horaEntrada: '11:30',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      // 10 visitantes adicionales
+      {
+        id: 11,
+        nombre: 'Luis Mendoza',
+        documento: '10928374',
+        casa: '4',
+        residente: 'Santiago Jiménez',
+        proposito: 'Visita',
+        fecha: '2025-04-20',
+        horaEntrada: '09:45',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 12,
+        nombre: 'Camila Restrepo',
+        documento: '90817263',
+        casa: '17',
+        residente: 'Sara Martínez',
+        proposito: 'Invitada',
+        fecha: '2025-04-19',
+        horaEntrada: '18:30',
+        horaSalida: '21:15',
+        estado: 'Finalizada'
+      },
+      {
+        id: 13,
+        nombre: 'Tomás Ortega',
+        documento: '81726354',
+        casa: '19',
+        residente: 'Alejandra Díaz',
+        proposito: 'Reunión',
+        fecha: '2025-04-21',
+        horaEntrada: '10:00',
+        horaSalida: '',
+        estado: 'Pendiente'
+      },
+      {
+        id: 14,
+        nombre: 'María Paredes',
+        documento: '72635482',
+        casa: '7',
+        residente: 'Carlos Bustos',
+        proposito: 'Almuerzo',
+        fecha: '2025-04-20',
+        horaEntrada: '12:30',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 15,
+        nombre: 'Sofía Moreno',
+        documento: '63548291',
+        casa: '28',
+        residente: 'Laura Quintero',
+        proposito: 'Invitada',
+        fecha: '2025-04-20',
+        horaEntrada: '14:00',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 16,
+        nombre: 'Felipe Aguirre',
+        documento: '18273645',
+        casa: '9',
+        residente: 'Ricardo Ávila',
+        proposito: 'Fiesta',
+        fecha: '2025-04-18',
+        horaEntrada: '19:00',
+        horaSalida: '23:30',
+        estado: 'Finalizada'
+      },
+      {
+        id: 17,
+        nombre: 'Andrea Rojas',
+        documento: '91827364',
+        casa: '16',
+        residente: 'Natalia Herrera',
+        proposito: 'Entrega',
+        fecha: '2025-04-20',
+        horaEntrada: '15:15',
+        horaSalida: '',
+        estado: 'En curso'
+      },
+      {
+        id: 18,
+        nombre: 'Cristian Pérez',
+        documento: '82736455',
+        casa: '2',
+        residente: 'Andrés Londoño',
+        proposito: 'Trabajo',
+        fecha: '2025-04-21',
+        horaEntrada: '08:30',
+        horaSalida: '',
+        estado: 'Pendiente'
+      },
+      {
+        id: 19,
+        nombre: 'Natalia Espinosa',
+        documento: '73645281',
+        casa: '5',
+        residente: 'Verónica García',
+        proposito: 'Familiar',
+        fecha: '2025-04-17',
+        horaEntrada: '14:30',
+        horaSalida: '17:20',
+        estado: 'Finalizada'
+      },
+      {
+        id: 20,
+        nombre: 'Samuel Ospina',
+        documento: '64528173',
+        casa: '13',
+        residente: 'Manuela Torres',
+        proposito: 'Reparación',
+        fecha: '2025-04-21',
+        horaEntrada: '10:15',
+        horaSalida: '',
+        estado: 'Pendiente'
+      }
+    ];
+
+    // Variables para almacenar el índice del visitante seleccionado y el filtro actual
+    let visitanteSeleccionado = -1;
+    let filtroActual = 'todos';
+
+    // Variables para la paginación
+    const tabla = document.getElementById("tablaVisitantes");
+    const paginacion = document.getElementById("paginacionVisitantes");
+    const porPagina = 10;
+    let paginaActual = 1;
+
+    // Función para actualizar los contadores
+    function actualizarContadores() {
+      document.getElementById("totalVisitantes").textContent = visitantes.length;
+
+      const activos = visitantes.filter(v => v.estado === 'En curso').length;
+      document.getElementById("visitasActivas").textContent = activos;
+
+      const hoy = new Date().toISOString().split('T')[0];
+      const visitasHoy = visitantes.filter(v => v.fecha === hoy).length;
+      document.getElementById("visitasHoy").textContent = visitasHoy;
+    }
+
+    // Función para filtrar visitantes
+    function filtrarVisitantes(filtro) {
+      filtroActual = filtro;
+      paginaActual = 1;
+      mostrarPagina(1);
+    }
+
+    // Función para buscar visitantes
+    function buscarVisitante() {
+      const busqueda = document.getElementById("search-input").value.toLowerCase();
+      if (busqueda.trim() === '') {
+        filtrarVisitantes('todos');
+        return;
+      }
+
+      const visitantesFiltrados = visitantes.filter(v =>
+        v.nombre.toLowerCase().includes(busqueda) ||
+        v.documento.toLowerCase().includes(busqueda) ||
+        v.casa.toLowerCase().includes(busqueda) ||
+        v.residente.toLowerCase().includes(busqueda)
+      );
+
+      mostrarVisitantesFiltrados(visitantesFiltrados);
+    }
+
+    // Función para mostrar visitantes filtrados
+    function mostrarVisitantesFiltrados(visitantesFiltrados) {
+      tabla.innerHTML = "";
+      if (visitantesFiltrados.length === 0) {
+        tabla.innerHTML = `<tr><td colspan="11" class="text-center">No se encontraron resultados</td></tr>`;
+        paginacion.innerHTML = "";
+        return;
+      }
+
+      visitantesFiltrados.forEach((v, i) => {
+        tabla.innerHTML += crearFilaVisitante(v, i);
+      });
+
+      // No mostramos paginación en resultados de búsqueda
+      paginacion.innerHTML = "";
+    }
+
+    // Función para crear una fila de visitante
+    function crearFilaVisitante(v, index) {
+      return `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${v.nombre}</td>
+          <td>${v.documento}</td>
+          <td>${v.casa}</td>
+          <td>${v.residente}</td>
+          <td>${v.proposito}</td>
+          <td>${v.fecha}</td>
+          <td>${v.horaEntrada}</td>
+          <td>${v.horaSalida || '—'}</td>
+          <td>
+            <span class="badge ${getBadgeClass(v.estado)}">${v.estado}</span>
+          </td>
+          <td>
+              <div class="d-flex gap-1">
+            <button class="btn btn-sm btn-info me-1" onclick="verDetalles(${v.id})">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn btn-sm btn-warning me-1" onclick="editarVisitante(${v.id})">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-success me-1" onclick="mostrarModalSalida(${v.id})" ${v.estado !== 'En curso' ? 'disabled' : ''}>
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" onclick="mostrarModalEliminar(${v.id})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>`;
+    }
+
+    // Función para obtener la clase de badge según el estado
+    function getBadgeClass(estado) {
+      switch (estado) {
+        case 'En curso': return 'bg-success';
+        case 'Finalizada': return 'bg-secondary';
+        case 'Pendiente': return 'bg-warning text-dark';
+        default: return 'bg-secondary';
+      }
+    }
+
+    // Función para mostrar una página específica
+    function mostrarPagina(pagina) {
+      tabla.innerHTML = "";
+      let visitantesFiltrados = [...visitantes];
+
+      if (filtroActual === 'activos') {
+        visitantesFiltrados = visitantes.filter(v => v.estado === 'En curso');
+      } else if (filtroActual === 'completados') {
+        visitantesFiltrados = visitantes.filter(v => v.estado === 'Finalizada');
+      }
+
+      const inicio = (pagina - 1) * porPagina;
+      const fin = Math.min(inicio + porPagina, visitantesFiltrados.length);
+      const paginaVisitantes = visitantesFiltrados.slice(inicio, fin);
+
+      if (paginaVisitantes.length === 0) {
+        tabla.innerHTML = `<tr><td colspan="11" class="text-center">No hay visitantes para mostrar</td></tr>`;
+      } else {
+        paginaVisitantes.forEach((v, i) => {
+          tabla.innerHTML += crearFilaVisitante(v, inicio + i);
+        });
+      }
+
+      mostrarPaginacion(visitantesFiltrados.length, pagina);
+    }
+
+    // Función para mostrar la paginación
+    function mostrarPaginacion(totalItems, paginaActual) {
+      const totalPaginas = Math.ceil(totalItems / porPagina);
+      paginacion.innerHTML = "";
+
+      // Botón anterior
+      paginacion.innerHTML += `
+        <li class="page-item ${paginaActual === 1 ? 'disabled' : ''}">
+          <button class="page-link" onclick="irPagina(${paginaActual - 1})">&laquo;</button>
+        </li>`;
+
+      // Botones de páginas
+      for (let i = 1; i <= totalPaginas; i++) {
+        paginacion.innerHTML += `
+          <li class="page-item ${i === paginaActual ? 'active' : ''}">
+            <button class="page-link" onclick="irPagina(${i})">${i}</button>
+          </li>`;
+      }
+
+      // Botón siguiente
+      paginacion.innerHTML += `
+        <li class="page-item ${paginaActual === totalPaginas ? 'disabled' : ''}">
+          <button class="page-link" onclick="irPagina(${paginaActual + 1})">&raquo;</button>
+        </li>`;
+    }
+
+    // Función para ir a una página específica
+    function irPagina(pagina) {
+      paginaActual = pagina;
+      mostrarPagina(pagina);
+    }
+
+    // Función para ver detalles de un visitante
+    function verDetalles(id) {
+      const visitante = visitantes.find(v => v.id === id);
+      if (visitante) {
+        document.getElementById('detalleNombre').textContent = visitante.nombre;
+        document.getElementById('detalleDocumento').textContent = visitante.documento;
+        document.getElementById('detalleCasa').textContent = visitante.casa;
+        document.getElementById('detalleResidente').textContent = visitante.residente;
+        document.getElementById('detalleProposito').textContent = visitante.proposito;
+        document.getElementById('detalleFecha').textContent = visitante.fecha;
+        document.getElementById('detalleHoraEntrada').textContent = visitante.horaEntrada;
+        document.getElementById('detalleHoraSalida').textContent = visitante.horaSalida || '—';
+        document.getElementById('detalleEstado').textContent = visitante.estado;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalDetalles'));
+        modal.show();
+      }
+    }
+
+    // Función para editar un visitante
+    function editarVisitante(id) {
+      const visitante = visitantes.find(v => v.id === id);
+      if (visitante) {
+        visitanteSeleccionado = id;
+        document.getElementById('editarNombre').value = visitante.nombre;
+        document.getElementById('editarDocumento').value = visitante.documento;
+        document.getElementById('editarCasa').value = visitante.casa;
+        document.getElementById('editarResidente').value = visitante.residente;
+        document.getElementById('editarProposito').value = visitante.proposito;
+        document.getElementById('editarFecha').value = visitante.fecha;
+        document.getElementById('editarHoraEntrada').value = visitante.horaEntrada;
+        document.getElementById('editarHoraSalida').value = visitante.horaSalida;
+        document.getElementById('editarEstado').value = visitante.estado;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalEditar'));
+        modal.show();
+      }
+    }
+
+    // Función para guardar cambios de edición
+    function guardarEdicion() {
+      if (visitanteSeleccionado === -1) return;
+
+      const index = visitantes.findIndex(v => v.id === visitanteSeleccionado);
+      if (index !== -1) {
+        visitantes[index].nombre = document.getElementById('editarNombre').value;
+        visitantes[index].documento = document.getElementById('editarDocumento').value;
+        visitantes[index].casa = document.getElementById('editarCasa').value;
+        visitantes[index].residente = document.getElementById('editarResidente').value;
+        visitantes[index].proposito = document.getElementById('editarProposito').value;
+        visitantes[index].fecha = document.getElementById('editarFecha').value;
+        visitantes[index].horaEntrada = document.getElementById('editarHoraEntrada').value;
+        visitantes[index].horaSalida = document.getElementById('editarHoraSalida').value;
+        visitantes[index].estado = document.getElementById('editarEstado').value;
+
+        mostrarPagina(paginaActual);
+        actualizarContadores();
+
+        // Cerrar el modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalEditar'));
+        modal.hide();
+
+        // Mostrar mensaje de éxito
+        alert('Visitante actualizado correctamente');
+      }
+    }
+
+    // Función para mostrar modal de eliminar
+    function mostrarModalEliminar(id) {
+      const visitante = visitantes.find(v => v.id === id);
+      if (visitante) {
+        visitanteSeleccionado = id;
+        document.getElementById('eliminarNombre').textContent = visitante.nombre;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalEliminar'));
+        modal.show();
+      }
+    }
+
+    // Función para eliminar un visitante
+    function eliminarVisitante() {
+      if (visitanteSeleccionado === -1) return;
+
+      const index = visitantes.findIndex(v => v.id === visitanteSeleccionado);
+      if (index !== -1) {
+        visitantes.splice(index, 1);
+
+        mostrarPagina(paginaActual);
+        actualizarContadores();
+
+        // Cerrar el modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalEliminar'));
+        modal.hide();
+
+        // Mostrar mensaje de éxito
+        alert('Visitante eliminado correctamente');
+      }
+    }
+
+    // Función para mostrar modal de salida
+    function mostrarModalSalida(id) {
+      const visitante = visitantes.find(v => v.id === id);
+      if (visitante && visitante.estado === 'En curso') {
+        visitanteSeleccionado = id;
+        document.getElementById('salidaNombre').textContent = visitante.nombre;
+
+        // Establecer la hora actual
+        const ahora = new Date();
+        const horaActual = ahora.getHours().toString().padStart(2, '0') + ':' +
+          ahora.getMinutes().toString().padStart(2, '0');
+        document.getElementById('horaSalida').value = horaActual;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalSalida'));
+        modal.show();
+      }
+    }
+
+    // Función para registrar la salida de un visitante
+    function registrarSalida() {
+      if (visitanteSeleccionado === -1) return;
+
+      const index = visitantes.findIndex(v => v.id === visitanteSeleccionado);
+      if (index !== -1 && visitantes[index].estado === 'En curso') {
+        visitantes[index].horaSalida = document.getElementById('horaSalida').value;
+        visitantes[index].estado = 'Finalizada';
+
+        mostrarPagina(paginaActual);
+        actualizarContadores();
+
+        // Cerrar el modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalSalida'));
+        modal.hide();
+
+        // Mostrar mensaje de éxito
+        alert('Salida registrada correctamente');
+      }
+    }
+
+    // Inicializar la página
+    window.onload = function () {
+      actualizarContadores();
+      mostrarPagina(1);
+    };
+  </script>
+</body>
+
+</html>

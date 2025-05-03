@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Vehículos</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+
+<body class="p-3 d-flex flex-column min-vh-100t">
+
+  <div class="container flex-grow-1 py-4">
+    <h2 class="mb-4">Registro de Vehículos</h2>
+
+
+
+    <div class="row g-4">
+      <!-- Propietarios -->
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <button class="btn btn-outline-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalAgregarPropietario">
+              <i class="fas fa-plus me-2"></i>Agregar Vehículo Propietario
+            </button>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover text-center" id="tablaPropietarios">
+                <thead class="table-light">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Placa</th>
+                    <th>Tipo</th>
+                    <th>Aprobación</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Luisa Pereira</td>
+                    <td>ABC-123</td>
+                    <td>Carro</td>
+                    <td>Exitoso</td>
+                    <td><span class="badge bg-success">Activo</span></td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Residentes -->
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <button class="btn btn-outline-success w-100 mb-3" data-bs-toggle="modal" data-bs-target="#modalAgregarResidente">
+              <i class="fas fa-plus me-2"></i>Agregar Vehículo Residente
+            </button>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover text-center" id="tablaResidentes">
+                <thead class="table-light">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Placa</th>
+                    <th>Tipo</th>
+                    <th>Piso/Torre</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Luisa Pereira</td>
+                    <td>ABC-123</td>
+                    <td>Carro</td>
+                    <td>Piso 1</td>
+                    <td><span class="badge bg-success">Activo</span></td>
+                    <td>
+                      <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modales -->
+  <div id="modales">
+    <!-- Modal Agregar Propietario -->
+    <div class="modal fade" id="modalAgregarPropietario" tabindex="-1" aria-labelledby="modalAgregarPropietarioLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="formAgregarPropietario">
+            <div class="modal-header">
+              <h5 class="modal-title">Agregar Vehículo Propietario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombrePropietario" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Placa</label>
+                <input type="text" class="form-control" id="placaPropietario" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Tipo de Vehículo</label>
+                <select class="form-select" id="tipoPropietario">
+                  <option value="Carro">Carro</option>
+                  <option value="Moto">Moto</option>
+                  <option value="Bicicleta">Bicicleta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Estado de Aprobación</label>
+                <select class="form-select" id="estadoAprobacionPropietario">
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Aprobado">Aprobado</option>
+                  <option value="Rechazado">Rechazado</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-select" id="estadoPropietario">
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Agregar Residente -->
+    <div class="modal fade" id="modalAgregarResidente" tabindex="-1" aria-labelledby="modalAgregarResidenteLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="formAgregarResidente">
+            <div class="modal-header">
+              <h5 class="modal-title">Agregar Vehículo Residente</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreResidente" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Placa</label>
+                <input type="text" class="form-control" id="placaResidente" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Tipo de Vehículo</label>
+                <select class="form-select" id="tipoResidente">
+                  <option value="Carro">Carro</option>
+                  <option value="Moto">Moto</option>
+                  <option value="Bicicleta">Bicicleta</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Piso o Torre</label>
+                <input type="text" class="form-control" id="pisoResidente" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-select" id="estadoResidente">
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("Página cargada correctamente");
+    });
+  </script>
+
+</body>
+
+</html>

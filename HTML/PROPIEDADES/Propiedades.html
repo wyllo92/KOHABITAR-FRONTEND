@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Propiedades</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="p-3 d-flex flex-column min-vh-100t">
+
+  <div class="container flex-grow-1 py-4">
+    <h2 class="mb-4">Gestión de Propiedades</h2>
+
+    <!-- Botón: Crear propiedad -->
+    <button class="btn mb-3" style="background-color: #3498db; color: white;"  data-bs-toggle="modal" data-bs-target="#crearPropiedadModal">
+      <i class="fa fa-plus"></i> Nueva Propiedad
+    </button>
+    <!-- Tabla de propiedades -->
+    <table class="table table-bordered table-hover bg-white shadow-sm text-center">
+      <thead class="table-secondary">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Ubicación</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>001</td>
+          <td>Torre A - Apto 101</td>
+          <td>Apartamento</td>
+          <td>Piso 1</td>
+          <td><span class="badge bg-success">Disponible</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>Torre A - Apto 101</td>
+          <td>Apartamento</td>
+          <td>Piso </td>
+          <td><span class="badge bg-success">Disponible</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>003</td>
+          <td>Torre A - Apto 101</td>
+          <td>Apartamento</td>
+          <td>Piso 1</td>
+          <td><span class="badge bg-success">Disponible</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>004</td>
+          <td>Torre A - Apto 101</td>
+          <td>Apartamento</td>
+          <td>Piso 1</td>
+          <td><span class="badge bg-success">Disponible</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>005</td>
+          <td>Torre A - Apto 101</td>
+          <td>Apartamento</td>
+          <td>Piso 1</td>
+          <td><span class="badge bg-success">Disponible</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>006</td>
+          <td>Torre A - Apto 101</td>
+          <td>Apartamento</td>
+          <td>Piso 1</td>
+          <td><span class="badge bg-success">Disponible</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editarPropiedadModal">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarPropiedadModal">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal: Crear Propiedad -->
+  <div class="modal fade" id="crearPropiedadModal" tabindex="-1" aria-labelledby="crearPropiedadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="crearPropiedadLabel">Crear Propiedad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>Nombre</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label>Tipo</label>
+              <select class="form-select" required>
+                <option value="">Seleccione</option>
+                <option>Apartamento</option>
+                <option>Casa</option>
+                <option>Local</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Ubicación</label>
+              <input type="text" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Editar Propiedad -->
+  <div class="modal fade" id="editarPropiedadModal" tabindex="-1" aria-labelledby="editarPropiedadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="editarPropiedadLabel">Editar Propiedad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label>Nombre</label>
+              <input type="text" class="form-control" value="Torre A - Apto 101" required>
+            </div>
+            <div class="mb-3">
+              <label>Tipo</label>
+              <select class="form-select" required>
+                <option selected>Apartamento</option>
+                <option>Casa</option>
+                <option>Local</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label>Ubicación</label>
+              <input type="text" class="form-control" value="Piso 1" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-warning">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Eliminar Propiedad -->
+  <div class="modal fade" id="eliminarPropiedadModal" tabindex="-1" aria-labelledby="eliminarPropiedadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="eliminarPropiedadLabel">Eliminar Propiedad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            ¿Está seguro que desea eliminar la propiedad <strong>Torre A - Apto 101</strong>?
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
